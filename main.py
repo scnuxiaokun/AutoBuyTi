@@ -4,10 +4,13 @@
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
 import requests,json
-import time
 import _thread,threading
 import urllib3
 import logging
+from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED, FIRST_COMPLETED
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+import threading, queue
 
 # 创建Logger
 logger = logging.getLogger()
@@ -49,11 +52,11 @@ def getByProxy(targetUrl):
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
-    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
+    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=3)
     if r.status_code == 302 or r.status_code == 301:
         loc = r.headers['Location']
         url_f = loc
-        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
+        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=3)
         return r
     return r
 
@@ -84,6 +87,7 @@ def getInventory(url):
     else:
         logger.error("[ERROR]:"+" text:" + response.text+" status_code:"+ str(response.status_code))  # 打印状态码
         return 0
+
 def autoBuyProductByCode(productCode):
     url = 'https://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
     inventory = getInventory(url)
@@ -91,6 +95,50 @@ def autoBuyProductByCode(productCode):
         logger.info("["+productCode+"]" + "库存数量:" + str(inventory))
     else:
         logger.info("[" + productCode + "]" + "没库存")
+
+def getProductList(productCodeQueue, size):
+    if productCodeQueue.qsize() < size:
+        f = open("data.txt")
+        lines = f.readlines()
+        f.close()
+        for index in range(len(lines)):
+            line = lines[index]
+            productCode = line.replace('\n', '').replace('\r', '').strip()
+            productCodeQueue.put(productCode)
+
+    list = []
+    for index in range(size):
+        if productCodeQueue.empty() == False:
+            list.append(productCodeQueue.get())
+        else:
+            return list
+    return list
+
+def loopProductListToGetInventory():
+
+    maxThreadCount = 50
+    maxIpCount = 5
+    executor = ThreadPoolExecutor(max_workers=maxThreadCount)
+    all_task = []
+    productCodeQueue = queue.SimpleQueue()
+
+    while 1:
+        productCodeList = getProductList(productCodeQueue, 5)
+        tasks = [executor.submit(autoBuyProductByCode, (item)) for item in productCodeList]
+        for task in tasks:
+            all_task.append(task)
+
+        time.sleep(1)
+
+        if len(all_task) >= maxThreadCount :
+            copy_all_task = all_task
+
+            for future in as_completed(copy_all_task):
+                all_task.remove(future)
+                if len(all_task) <= maxThreadCount - maxIpCount:
+                    break
+
+    logger.info("===========全部完成===========")
 
 def addtocart(productCode):
     addtocart_url = "https://www.ti.com.cn/occservices/v2/ti/addtocart"
@@ -155,22 +203,13 @@ if __name__ == '__main__':
     print_hi('==================PyCharm Start====================')
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-    threads = []
-
-    f = open("data.txt")
-    line = f.readline()
-    while line:
-        productCode = line.replace('\n', '').replace('\r', '').strip()
-        autoBuyProductByCode(productCode)
-        line = f.readline()
-    f.close()
+    loopProductListToGetInventory()
 
     # 通过url直接加上请求参数，与通过params传参效果是一样的
 
     # getUrl('https://www.ti.com.cn/storeservices/cart/opninventory?opn=HD3SS3212IRKSR')
 
     # 通过params传参
-    # response2 = requests.get(url='http://www.baidu.com/s', params={"wd": "requests模块"})
     # print(response.text)  # 打印状态码
     # print(response.text)		# 获取响应内容
 # addtocart("PLL1707IDBQRQ1")
