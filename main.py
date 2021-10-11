@@ -14,7 +14,7 @@ import threading, queue
 
 # 创建Logger
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 # 创建Handler
 
@@ -41,7 +41,7 @@ def print_hi(name):
 
 def getByProxy(targetUrl):
     # 蘑菇代理的隧道订单
-    appKey = "eEJlb2Z5c09BVEVQNWpCbzpjWGJ3T1ZES01VdzZ6OWZV"
+    appKey = "dlpwN1prQWpNdUpIazVOcjplclFxRVVuOFZyYXdHRXhC"
 
     # 蘑菇隧道代理服务器地址
     ip_port = 'secondtransfer.moguproxy.com:9001'
@@ -116,7 +116,7 @@ def getProductList(productCodeQueue, size):
 
 def loopProductListToGetInventory():
 
-    maxThreadCount = 50
+    maxThreadCount = 1
     maxIpCount = 5
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     all_task = []
