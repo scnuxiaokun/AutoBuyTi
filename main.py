@@ -52,11 +52,11 @@ def getByProxy(targetUrl):
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
-    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=3)
+    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
     if r.status_code == 302 or r.status_code == 301:
         loc = r.headers['Location']
         url_f = loc
-        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=3)
+        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
         return r
     return r
 
@@ -79,22 +79,25 @@ def postByProxy(targetUrl, json, headers):
 
 
 def getInventory(url):
-    logger.info("请求URL:"+url)
+    # logger.info("请求URL:"+url)
     # response = requests.get(url=url)
     response = getByProxy(url)
     if response.status_code == 200:
         return json.loads(response.text).get('inventory')
     else:
-        logger.error("[ERROR]:"+" text:" + response.text+" status_code:"+ str(response.status_code))  # 打印状态码
-        return 0
+        logger.error("[ERROR]:"+" status_code:"+ str(response.status_code)+ " "+url)  # 打印状态码
+        return -1
 
 def autoBuyProductByCode(productCode):
-    url = 'https://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
+    url = 'http://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
+    logger.info("[" + productCode + "]" + "查库存")
     inventory = getInventory(url)
     if inventory > 0:
         logger.info("["+productCode+"]" + "库存数量:" + str(inventory))
-    else:
+    elif inventory == 0:
         logger.info("[" + productCode + "]" + "没库存")
+    else:
+        logger.info("[" + productCode + "]" + "查询失败")
 
 def getProductList(productCodeQueue, size):
     if productCodeQueue.qsize() < size:
@@ -116,7 +119,7 @@ def getProductList(productCodeQueue, size):
 
 def loopProductListToGetInventory():
 
-    maxThreadCount = 1
+    maxThreadCount = 10
     maxIpCount = 5
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     all_task = []
@@ -200,7 +203,7 @@ class myThread(threading.Thread):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('==================PyCharm Start====================')
+    logger.info('==================PyCharm Start====================')
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     loopProductListToGetInventory()
@@ -213,5 +216,5 @@ if __name__ == '__main__':
     # print(response.text)  # 打印状态码
     # print(response.text)		# 获取响应内容
 # addtocart("PLL1707IDBQRQ1")
-print_hi('==================PyCharm End====================')
+logger.info('==================PyCharm End====================')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
