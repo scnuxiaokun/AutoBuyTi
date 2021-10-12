@@ -40,6 +40,7 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
 def getByProxy(targetUrl):
+    return getByProxyV2(targetUrl)
     # 蘑菇代理的隧道订单
     appKey = "dlpwN1prQWpNdUpIazVOcjplclFxRVVuOFZyYXdHRXhC"
 
@@ -58,6 +59,24 @@ def getByProxy(targetUrl):
         url_f = loc
         r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
         return r
+    return r
+
+def getByProxyV2(targetUrl):
+    # ipPortResponse = requests.get(
+    #     'https://proxy.qg.net/allocate?Key=76ADE165&KeepAlive=60&AreaId=&Num=1&Isp=&DataFormat=json&DataSeparator=&Detail=0&Distinct=0')
+    # ipList = json.loads(ipPortResponse.text)["Data"]
+    # ip = ipList[0]['IP']
+    # port = ipList[0]['port']
+    # ip = '113.219.210.21'
+    # port = '21042'
+    # proxyUrl = ip+":"+port
+    proxyUrl = "125.124.3.72:56407"
+
+    proxy = {"http": "http://" + proxyUrl,"https": "https://" + proxyUrl}
+    headers = {
+      "User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
+      "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
+    r = requests.get(targetUrl, headers=headers, proxies=proxy,timeout=10)
     return r
 
 def postByProxy(targetUrl, json, headers):
@@ -90,14 +109,18 @@ def getInventory(url):
 
 def autoBuyProductByCode(productCode):
     url = 'http://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
-    logger.info("[" + productCode + "]" + "查库存")
+    # https: // www.ti.com.cn / productmodel / DP83822 / tistore
+    # https://www.ti.com.cn/search/opn?searchTerm=BQ771808DPJT
+    # logger.info("[" + productCode + "]" + "查库存")
+    t = time.time()
     inventory = getInventory(url)
+    t = str(time.time() - t)
     if inventory > 0:
-        logger.info("["+productCode+"]" + "库存数量:" + str(inventory))
+        logger.info("["+productCode+"]" + "库存数量:" + str(inventory)  + "t=" + t)
     elif inventory == 0:
-        logger.info("[" + productCode + "]" + "没库存")
+        logger.info("[" + productCode + "]" + "没库存" + "t=" + t)
     else:
-        logger.info("[" + productCode + "]" + "查询失败")
+        logger.info("[" + productCode + "]" + "查询失败" + "t=" + t)
 
 def getProductList(productCodeQueue, size):
     if productCodeQueue.qsize() < size:
@@ -119,19 +142,20 @@ def getProductList(productCodeQueue, size):
 
 def loopProductListToGetInventory():
 
-    maxThreadCount = 10
-    maxIpCount = 5
+    maxThreadCount = 50
+    maxIpCount = 50
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     all_task = []
     productCodeQueue = queue.SimpleQueue()
 
     while 1:
-        productCodeList = getProductList(productCodeQueue, 5)
+        productCodeList = getProductList(productCodeQueue, maxIpCount)
         tasks = [executor.submit(autoBuyProductByCode, (item)) for item in productCodeList]
         for task in tasks:
             all_task.append(task)
 
-        time.sleep(1)
+        # time.sleep(1)
+        break
 
         if len(all_task) >= maxThreadCount :
             copy_all_task = all_task
@@ -208,6 +232,9 @@ if __name__ == '__main__':
 
     loopProductListToGetInventory()
 
+    # autoBuyProductByCode("BQ7692000PWR")
+    # getByProxy("http://www.moguproxy.com/proxy/test/aaa")
+    # getByProxyV2('http://github.com/')
     # 通过url直接加上请求参数，与通过params传参效果是一样的
 
     # getUrl('https://www.ti.com.cn/storeservices/cart/opninventory?opn=HD3SS3212IRKSR')
