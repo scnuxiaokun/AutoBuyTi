@@ -31,7 +31,7 @@ if __name__ == '__main__':
         productCodeList.append(productCode)
 
     executor = ThreadPoolExecutor(max_workers=1)
-    tasks = [executor.submit(getParentCode, (productCode)) for item in productCodeList]
+    tasks = [executor.submit(getParentCode, (item)) for item in productCodeList]
     for task in as_completed(tasks):
         (productCode, parentCode) = task.result()
         productCodeMap[productCode] = parentCode

@@ -11,6 +11,8 @@ from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED, FIRST_CO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 import threading, queue
+import random
+
 
 # 创建Logger
 logger = logging.getLogger()
@@ -40,19 +42,22 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
 def getByProxy(targetUrl):
-    return getByProxyV2(targetUrl)
-    # 蘑菇代理的隧道订单
-    appKey = "dlpwN1prQWpNdUpIazVOcjplclFxRVVuOFZyYXdHRXhC"
+    # return getByProxyV2(targetUrl)
+    # targetUrl = "https://api.ip.sb/geoip"
 
-    # 蘑菇隧道代理服务器地址
-    ip_port = 'secondtransfer.moguproxy.com:9001'
+    proxyUser = "scnuxiaokun"
+    password = "scnuxiaokun123"
+    randomId = random.randint(1,99999999)
+    proxyUrl = 'proxy.fanqieip.net:12344'
+    athorization = proxyUser+"-"+"us"+"-"+str(randomId)+":"+password
 
-    proxy = {"http": "http://" + ip_port}
+    proxy = {"http": "http://" + athorization+"@"+proxyUrl, "https": "http://" + athorization+"@"+proxyUrl}
     headers = {
-        "Proxy-Authorization": 'Basic ' + appKey,
+        # "Proxy-Authorization": 'Basic ' + athorization,
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
+    # logger.info(athorization+"@"+proxyUrl)
     r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
     if r.status_code == 302 or r.status_code == 301:
         loc = r.headers['Location']
@@ -142,8 +147,8 @@ def getProductList(productCodeQueue, size):
 
 def loopProductListToGetInventory():
 
-    maxThreadCount = 50
-    maxIpCount = 50
+    maxThreadCount = 500
+    maxIpCount = 500
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     all_task = []
     productCodeQueue = queue.SimpleQueue()
