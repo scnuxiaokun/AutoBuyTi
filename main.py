@@ -148,7 +148,7 @@ def getProductList(productCodeQueue, size):
 def loopProductListToGetInventory():
 
     maxThreadCount = 500
-    maxIpCount = 500
+    maxIpCount = 100
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     all_task = []
     productCodeQueue = queue.SimpleQueue()
@@ -158,9 +158,6 @@ def loopProductListToGetInventory():
         tasks = [executor.submit(autoBuyProductByCode, (item)) for item in productCodeList]
         for task in tasks:
             all_task.append(task)
-
-        # time.sleep(1)
-        break
 
         if len(all_task) >= maxThreadCount :
             copy_all_task = all_task
