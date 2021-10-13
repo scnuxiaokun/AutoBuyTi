@@ -12,100 +12,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 import threading, queue
 import random
-
-
-# 创建Logger
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-
-# 创建Handler
-
-# 终端Handler
-consoleHandler = logging.StreamHandler()
-consoleHandler.setLevel(logging.DEBUG)
-
-# 文件Handler
-fileHandler = logging.FileHandler('log.log', mode='w', encoding='UTF-8')
-fileHandler.setLevel(logging.NOTSET)
-
-# Formatter
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-consoleHandler.setFormatter(formatter)
-fileHandler.setFormatter(formatter)
-
-# 添加到Logger中
-logger.addHandler(consoleHandler)
-logger.addHandler(fileHandler)
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-def getByProxy(targetUrl):
-    # return getByProxyV2(targetUrl)
-    # targetUrl = "https://api.ip.sb/geoip"
-
-    proxyUser = "scnuxiaokun"
-    password = "scnuxiaokun123"
-    randomId = random.randint(1,99999999)
-    proxyUrl = 'proxy.fanqieip.net:12344'
-    athorization = proxyUser+"-"+"us"+"-"+str(randomId)+":"+password
-
-    proxy = {"http": "http://" + athorization+"@"+proxyUrl, "https": "http://" + athorization+"@"+proxyUrl}
-    headers = {
-        # "Proxy-Authorization": 'Basic ' + athorization,
-        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
-        "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
-
-    # logger.info(athorization+"@"+proxyUrl)
-    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
-    if r.status_code == 302 or r.status_code == 301:
-        loc = r.headers['Location']
-        url_f = loc
-        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
-        return r
-    return r
-
-def getByProxyV2(targetUrl):
-    # ipPortResponse = requests.get(
-    #     'https://proxy.qg.net/allocate?Key=76ADE165&KeepAlive=60&AreaId=&Num=1&Isp=&DataFormat=json&DataSeparator=&Detail=0&Distinct=0')
-    # ipList = json.loads(ipPortResponse.text)["Data"]
-    # ip = ipList[0]['IP']
-    # port = ipList[0]['port']
-    # ip = '113.219.210.21'
-    # port = '21042'
-    # proxyUrl = ip+":"+port
-    proxyUrl = "125.124.3.72:56407"
-
-    proxy = {"http": "http://" + proxyUrl,"https": "https://" + proxyUrl}
-    headers = {
-      "User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
-      "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
-    r = requests.get(targetUrl, headers=headers, proxies=proxy,timeout=10)
-    return r
-
-def postByProxy(targetUrl, json, headers):
-    # 蘑菇代理的隧道订单
-    appKey = "eEJlb2Z5c09BVEVQNWpCbzpjWGJ3T1ZES01VdzZ6OWZV"
-
-    # 蘑菇隧道代理服务器地址
-    ip_port = 'secondtransfer.moguproxy.com:9001'
-
-    proxy = {"http": "http://" + ip_port}
-    headers["Proxy-Authorization"] = 'Basic ' + appKey
-    headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0"
-    headers["Accept-Language"] = "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"
-
-    logger.info(headers)
-    response = requests.post(url=targetUrl, json=json, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
-    logger.info(response.status_code)
-    logger.info(response.text)
+import proxy
+import common
 
 
 def getInventory(url):
     # logger.info("请求URL:"+url)
     # response = requests.get(url=url)
-    response = getByProxy(url)
+    response = proxy.get(url)
     if response.status_code == 200:
         return json.loads(response.text).get('inventory')
     else:
@@ -114,13 +28,36 @@ def getInventory(url):
 
 def autoBuyProductByCode(productCode):
     url = 'http://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
-    # https: // www.ti.com.cn / productmodel / DP83822 / tistore
-    # https://www.ti.com.cn/search/opn?searchTerm=BQ771808DPJT
-    # logger.info("[" + productCode + "]" + "查库存")
     t = time.time()
     inventory = getInventory(url)
     t = str(time.time() - t)
+    processHasInventory(productCode, inventory, t)
+
+def autoBuyProductByCodeV2(parentCode, productCodeList):
+    t = time.time()
+    url = "https://www.ti.com.cn/productmodel/"+parentCode+"/tistore"
+    response = proxy.get(url)
+    t = str(time.time() - t)
+    if response.status_code == 200:
+        list = json.loads(response.text)
+        productCodeMap = {}
+        for code in productCodeList:
+            productCodeMap[code] = 1
+
+        for item in list:
+            productCode = item['orderablePartNumber']
+            inventory = item['inventory']
+            if productCode in productCodeMap:
+                processHasInventory(productCode, int(inventory), t)
+    else:
+        logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
+
+def processHasInventory(productCode, inventory, timespent):
+    t = timespent
     if inventory > 0:
+        f = open("dataHasInventory.txt", "a")
+        f.write(productCode + "," + str(inventory) + "\n")
+        f.close()
         logger.info("["+productCode+"]" + "库存数量:" + str(inventory)  + "t=" + t)
     elif inventory == 0:
         logger.info("[" + productCode + "]" + "没库存" + "t=" + t)
@@ -145,8 +82,34 @@ def getProductList(productCodeQueue, size):
             return list
     return list
 
-def loopProductListToGetInventory():
+def loopProductListToGetInventoryV2():
+    maxThreadCount = 500
+    executor = ThreadPoolExecutor(max_workers=maxThreadCount)
 
+    fo = open("formattedData.json")
+    formattedData = fo.read()
+    parentCodeMap = json.loads(formattedData)
+
+    all_task=[]
+    index = 0
+    keys = list(parentCodeMap.keys())
+    while 1:
+        parentCode = keys[index]
+        productCodeList = parentCodeMap[parentCode]
+        all_task.append(executor.submit(autoBuyProductByCodeV2, parentCode, productCodeList))
+        if len(all_task) >= maxThreadCount :
+            copy_all_task = all_task
+            for future in as_completed(copy_all_task):
+                all_task.remove(future)
+                if len(all_task) < maxThreadCount:
+                    break
+        index = index+1
+        if index >= len(keys) :
+            index = 0
+
+    logger.info("===========全部完成===========")
+
+def loopProductListToGetInventory():
     maxThreadCount = 500
     maxIpCount = 100
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
@@ -215,25 +178,18 @@ def addtocart(productCode):
     response = requests.post(url=addtocart_url, json=addtocartJson, headers=header)
     print(response.text)
 
-class myThread(threading.Thread):
-
-    def __init__(self, productCode):
-        threading.Thread.__init__(self)
-        self.productCode = productCode
-
-    def run(self):
-        # print("开始线程：" + self.productCode)
-        autoBuyProductByCode(self.productCode)
-        # print("退出线程：" + self.productCode)
-
-
 # Press the green button in the gutter to run the script.
+
+# 创建Logger
+logger = common.initLoger()
+
 if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-    loopProductListToGetInventory()
-
+    # loopProductListToGetInventory()
+    loopProductListToGetInventoryV2()
+    # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
     # autoBuyProductByCode("BQ7692000PWR")
     # getByProxy("http://www.moguproxy.com/proxy/test/aaa")
     # getByProxyV2('http://github.com/')

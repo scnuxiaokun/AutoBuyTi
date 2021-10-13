@@ -6,37 +6,64 @@ from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED, FIRST_CO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 import threading, queue
+import proxy
+import common
+
 def getParentCode(productCode):
-    url = "https://www.ti.com.cn/search/opn?searchTerm="+productCode
-    response = requests.get(url, timeout=10)
-    if response.status_code == 200:
-        parentCode = json.loads(response.text).get('genericPartNumber');
-        print("productCode:"+productCode+" parentCode:"+parentCode)
-        return (productCode, parentCode)
+    url = "http://www.ti.com.cn/search/opn?searchTerm="+productCode
+
+    try:
+        response = proxy.get(url)
+        if response.status_code == 200:
+            parentCode = json.loads(response.text).get('genericPartNumber');
+            logger.info("productCode:"+productCode+" parentCode:"+parentCode)
+            return (productCode, parentCode)
+        else:
+            logger.info("ERROR code="+str(response.status_code))
+    except BaseException as Argument:
+        logger.error("Exception:"+str(Argument)+" url:"+url)
     else:
-        print("ERROR code="+str(response.status_code))
+        pass
     return 0
 
+# 创建Logger
+logger = common.initLoger()
 if __name__ == '__main__':
-    result = {}
     productCodeMap = {}
     f = open("data.txt")
     lines = f.readlines()
     f.close()
 
+    fo = open("formattedData.json")
+    formattedData = fo.read()
+    result = json.loads(formattedData)
+    fo.close()
+    productCodeMapInFile = {}
+    for parentCode, codeList in result.items():
+        for code in codeList:
+            productCodeMapInFile[code] = 1
+
     productCodeList = []
     for index in range(len(lines)):
         line = lines[index]
         productCode = line.replace('\n', '').replace('\r', '').strip()
-        productCodeList.append(productCode)
+        if productCode in productCodeMapInFile:
+            pass
+        else:
+            productCodeList.append(productCode)
 
-    executor = ThreadPoolExecutor(max_workers=1)
+    executor = ThreadPoolExecutor(max_workers=100)
     tasks = [executor.submit(getParentCode, (item)) for item in productCodeList]
     for task in as_completed(tasks):
-        (productCode, parentCode) = task.result()
-        productCodeMap[productCode] = parentCode
+        try:
+            (productCode, parentCode) = task.result()
+            productCodeMap[productCode] = parentCode
+        except BaseException as Argument:
+            logger.error("Exception:" + str(Argument))
+        else:
+            pass
 
-    print(productCodeMap)
+    logger.info(productCodeMap)
 
     for productCode, parentCode in productCodeMap.items():
         if parentCode in result:
@@ -44,7 +71,7 @@ if __name__ == '__main__':
         else:
             result[parentCode] = [productCode]
 
-    print(result)
+    logger.info(result)
     fo = open("formattedData.json", "w")
     fo.write(json.dumps(result))
     fo.close()
