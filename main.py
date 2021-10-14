@@ -34,9 +34,14 @@ def autoBuyProductByCode(productCode):
     processHasInventory(productCode, inventory, t)
 
 def autoBuyProductByCodeV2(parentCode, productCodeList):
+    blackList = ["TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR", "TPS63805YFFT"]
+    # 过滤掉有库存但不能买的商品
+    for code in productCodeList:
+        if code in blackList:
+            return
     t = time.time()
     url = "https://www.ti.com.cn/productmodel/"+parentCode+"/tistore"
-    response = proxy.get(url)
+    response = proxy.getV2(url)
     t = str(time.time() - t)
     if response.status_code == 200:
         list = json.loads(response.text)
@@ -55,10 +60,6 @@ def autoBuyProductByCodeV2(parentCode, productCodeList):
 def processHasInventory(productCode, inventory, timespent):
     t = timespent
     if inventory > 0 :
-        blackList = ["TCAN1043GDMTRQ1","TPS25944LRVCR","TPS544B20RVFR","TCAN4550RGYR","TPS53317RGBR","TPS63805YFFT"]
-        # 过滤掉有库存但不能买的商品
-        if productCode in blackList:
-            return
         f = open("inventory.txt", "a")
         f.write(productCode + "," + str(inventory) + "\n")
         f.close()
@@ -87,7 +88,7 @@ def getProductList(productCodeQueue, size):
     return list
 
 def loopProductListToGetInventoryV2():
-    maxThreadCount = 500
+    maxThreadCount = 10
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
 
     fo = open("formattedData.json")
