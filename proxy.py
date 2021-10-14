@@ -50,8 +50,9 @@ def getV2(targetUrl):
     return r
 
 def post(targetUrl, json, headers):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     # 蘑菇代理的隧道订单
-    appKey = "eEJlb2Z5c09BVEVQNWpCbzpjWGJ3T1ZES01VdzZ6OWZV"
+    appKey = "UTNOMUx6WE1EQzJrVUU0VDpTd0JDVTFzNk1zY2pybW9q"
 
     # 蘑菇隧道代理服务器地址
     ip_port = 'secondtransfer.moguproxy.com:9001'
@@ -61,7 +62,5 @@ def post(targetUrl, json, headers):
     headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0"
     headers["Accept-Language"] = "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"
 
-    logger.info(headers)
     response = requests.post(url=targetUrl, json=json, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
-    logger.info(response.status_code)
-    logger.info(response.text)
+    return response
