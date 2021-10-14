@@ -11,7 +11,7 @@ def initLoger():
     consoleHandler.setLevel(logging.DEBUG)
 
     # 文件Handler
-    fileHandler = logging.FileHandler('log.log', mode='w', encoding='UTF-8')
+    fileHandler = logging.FileHandler('log.log', mode='a', encoding='UTF-8')
     fileHandler.setLevel(logging.NOTSET)
 
     # Formatter

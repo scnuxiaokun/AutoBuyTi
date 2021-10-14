@@ -54,8 +54,12 @@ def autoBuyProductByCodeV2(parentCode, productCodeList):
 
 def processHasInventory(productCode, inventory, timespent):
     t = timespent
-    if inventory > 0:
-        f = open("dataHasInventory.txt", "a")
+    if inventory > 0 :
+        blackList = ["TCAN1043GDMTRQ1","TPS25944LRVCR","TPS544B20RVFR","TCAN4550RGYR","TPS53317RGBR","TPS63805YFFT"]
+        # 过滤掉有库存但不能买的商品
+        if productCode in blackList:
+            return
+        f = open("inventory.txt", "a")
         f.write(productCode + "," + str(inventory) + "\n")
         f.close()
         logger.info("["+productCode+"]" + "库存数量:" + str(inventory)  + "t=" + t)
@@ -185,7 +189,6 @@ logger = common.initLoger()
 
 if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # loopProductListToGetInventory()
     loopProductListToGetInventoryV2()
@@ -201,5 +204,5 @@ if __name__ == '__main__':
     # print(response.text)  # 打印状态码
     # print(response.text)		# 获取响应内容
 # addtocart("PLL1707IDBQRQ1")
-logger.info('==================PyCharm End====================')
+# logger.info('==================PyCharm End====================')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
