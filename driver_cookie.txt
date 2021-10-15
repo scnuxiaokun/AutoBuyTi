@@ -1,7 +1,7 @@
 [
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665844231.533282,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665845240.516779,
     "hostOnly": false,
     "httpOnly": false,
     "name": "_abck",
@@ -10,12 +10,12 @@
     "secure": true,
     "session": false,
     "storeId": "0",
-    "value": "C58A172A739CD5E553940797865B413E~-1~YAAQLQrgesEjbHZ8AQAANpFchAaqDT0HqEZigj63swHbVReoLGYfOhnttaL+ivXfy3FTba3TiftmNejgUgcKBla8vPpN9u6OfKSHLQFTsXjhvwjrBPdnqrpn1vJ7c3o4GKzfaIWsuQ6FnLLEg6c9kCLqddkDP1Rfqmc5PEk99PFfEYofWmT59KITrQXQovZDeI+xyfmwOXcancC4HHbqqj/2lvbxHn7eGjsODZmoPUuVnLSf8dsafv87LcF+Mo/jkCWYmJlGA7oNXGOqd9uaH0RPy3skdHxmBgjdDyBwRG0GFP2W5u8mdnas4lxe9BiJNPxr745O06eEhgKTQj8+F5KiupFPTlSa0C2OR8PCetN8Vhsv4ME3tBZqxO7E/OiV2gRA2SKrLaq8ZEnr9764ZS8zG0G3rpbt/MDiAzGi3ZoHR1n1jhA1u4TF9HpHwGBih7omU/BO8mHyVw7oex/0Mbk=~0~-1~-1",
+    "value": "D98E4E551CDCA02D2A26334F85012BB5~-1~YAAQJArgehgoJXZ8AQAAoPZrhAZ9ifb1x6C/+NsYu63klW/gT+iZqlNYdjJZ7WKfbiVYqe5xGZNkRqSG/uIu/MXsasx52uADLmc191yF0vWd9DpJPSk77T7ufZNM2ODToZHgiKPgQPg6XM6RdXY/QeKTWURwM7x+f/2p1Hageo3pgfJJaS6dxw6z+ZBkO08Jxqq9r/i/MBMHb/xMwDyNSjdsip5SlY9T8Sql+FekwNhTQEmnTi6lYqDBoZX0FAyZk757I6rPgMn9DwYp3TAl3CUQS8i/oUWc2YZKiZYxa7fYaee0/9JaGGamRNXG8Vb7LGOAf/awZILz18tbqzNrMBr3bDCr+D0fkbOT0E4S8jV58O3V0gMbJq04qADMb4qFxpFgVu5BK273/taQnl+dMN3quYLpKIlCHu++kXlJcH8zkWCWCn0m83OlTxTrwuFw0Q7GgPHb+rey6FmoeBnI1pD/ztw=~-1~-1~-1",
     "id": 1
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1642084236,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1642085243,
     "hostOnly": false,
     "httpOnly": false,
     "name": "_fbp",
@@ -24,12 +24,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "fb.1.1634303344742.1885754455",
+    "value": "fb.2.1633072810262.713331343",
     "id": 2
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1697380156,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1697381239,
     "hostOnly": false,
     "httpOnly": false,
     "name": "_ga",
@@ -38,40 +38,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "GA1.2.889216227.1634301926",
+    "value": "GA1.3.1733809788.1632830178",
     "id": 3
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634308256,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "_gali",
-    "path": "/",
-    "sameSite": "unspecified",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "addToCartForm",
-    "id": 4
-},
-{
-    "domain": ".ti.com",
-    "expirationDate": 1634308283,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "_gat_ga_main_tracker",
-    "path": "/",
-    "sameSite": "unspecified",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "1",
-    "id": 5
-},
-{
-    "domain": ".ti.com",
-    "expirationDate": 1642077930,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1640606178,
     "hostOnly": false,
     "httpOnly": false,
     "name": "_gcl_au",
@@ -80,12 +52,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "1.1.1493727843.1634301931",
-    "id": 6
+    "value": "1.1.1688808738.1632830178",
+    "id": 4
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634394556,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634395639,
     "hostOnly": false,
     "httpOnly": false,
     "name": "_gid",
@@ -94,12 +66,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "GA1.2.629234927.1634301926",
-    "id": 7
+    "value": "GA1.3.1920753731.1634270365",
+    "id": 5
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1667831357,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1667832440,
     "hostOnly": false,
     "httpOnly": false,
     "name": "ABTasty",
@@ -108,12 +80,12 @@
     "secure": true,
     "session": false,
     "storeId": "0",
-    "value": "uid=grwkb68ar6jj0eyx&fst=1634301930464&pst=1634301930464&cst=1634308154909&ns=2&pvt=24&pvis=2&th=684039.848371.7.7.1.1.1634302531749.1634303735570.1",
-    "id": 8
+    "value": "uid=j6wshax2z59xfgv8&fst=1632830177486&pst=1634302520922&cst=1634308134253&ns=25&pvt=208&pvis=6&th=686831.851794.159.5.19.1.1632830480571.1634309240634.1_759046.943435.6.6.1.1.1632907981896.1632924253873.1",
+    "id": 6
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634309957,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634311040,
     "hostOnly": false,
     "httpOnly": false,
     "name": "ABTastySession",
@@ -122,12 +94,12 @@
     "secure": true,
     "session": false,
     "storeId": "0",
-    "value": "mrasn=&sen=1&lp=https%253A%252F%252Fwww.ti.com%252Fstore%252Fti%252Fzh%252Fp%252Fproduct%252F%253Fp%253DTHS6212IRHFT%2526keyMatch%253DTHS6212IRHFT%2526tisearch%253Dsearch-everything%2526usecase%253DOPN",
-    "id": 9
+    "value": "mrasn=&sen=10&lp=https%253A%252F%252Fwww.ti.com.cn%252Fsitesearch%252Fcn%252Fdocs%252Funiversalsearch.tsp%253FlangPref%253Dzh-CN%2526searchTerm%253D%2523src%253Dtop%2526linkId%253D1%2526q%253DTHS6212IRHFT%2526firstQueryCause%253DsearchFromLink",
+    "id": 7
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634309121.084185,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634315319.582991,
     "hostOnly": false,
     "httpOnly": true,
     "name": "ak_bmsc",
@@ -136,12 +108,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "95612E0420AAE8540AFDE38DC0D57E05~000000000000000000000000000000~YAAQLQrgevIGbHZ8AQAADk9bhA2dRsAFXkJGoa/qsVLa26OnuuTs3l+ARUnmBI99nkvJwV+NBLmAaRgZn5JpX7E33qvrHV6cqWVXQ+3WsvT9hTjzk2V2L7wMRdK8ZjdgKwtUD04ydNZQIev6K6E3D6zJWI3WDc4uWsMQEKRGtKzEJgeII8LYCsqtTStbhsSuOeyChIoJ9uvcGTgZUceatciSssAldMlzJSEJ13BKlBgs9o+Y3bO/z5gsNzKKzYyKOzzsjfoo5IkXG306E0fq2AtpcO6lTWGQyEVykHz7Fdm48TsBXcBF1r3QVrqAb+M64BheDjA5L5/YfkFCp+8Z1DNtwo49F+ucysRr7r6xAqftycJ9AIGINkB4GZzMsTNOWZc4yPNJWlaKqGsRhZy5tCrZ3asYvKfJfx+C+csH+BIfmVfo63WkgDcO+SW+bUliWkEtcNCLOIp0m7SfR6txcDqw7GDWhuSATX9Vq+APc8s=",
-    "id": 10
+    "value": "BC225E9C59EE2C4F0811DFD9E57759BA~000000000000000000000000000000~YAAQLQrgek0CbHZ8AQAAlxJbhA0hnMybRXS2dasbng97FZK++rmZrk0j8VPy/EJ6G1VkhlBikmHl92caAc+7G4keEpBXoCvXWCzjjMugex0QpykEIV7OuTfxphmukMm4emv3wiPhyLnd3GPkSxTqBTxU5mYVGQkx8kD9hrqt4f+CRgdyA4drFt+sQLK1fRExlTgodOpwX8Pd4w342uJkTKvFXeb+Gzsgwu2UUqZFWBkLRflZX/o2n+O4ikBnXQqvixEat2r/LclpHdNLiSrDjJ01K4Rz7nKtQwxD5jGNq/glC8U102TfvM1EDD+7VAX9bh0sLALFm2kitrTo0rx0hK3MgoDFUgyQZG3VTMVnWXcHfF63t5neqN25DevQaraxcvT2+yrUpZUNr7rKRAynWJFjRoupXAgmyKLU0cmaq6iBWCDxZ8GUjEiQdhHK5nb8HG0t8gFpxVQ=",
+    "id": 8
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634309121.041453,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634315319.390358,
     "hostOnly": false,
     "httpOnly": true,
     "name": "bm_mi",
@@ -150,12 +122,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "DEC4A84F0E06E6160022DEC1296F6CA7~BMa8WsB3wkyoddZAhAETXkY4HQtF/n0/9prvwkkvM6vFwMPnYhlNcjKcy9FT1DOB+j4lsqjocfUgi8NNNOBKowQ42mU7DgQ+MnPG1IVQBECDIJAyfrrXQUVH19IgSSLMha8t9c7cakyCZKDYoIQ/1Tk3D1BPO2OCVvPfBQKmEiFEnnwZExWJdy6Evs4I9FdeFrr3Oe8Vn+td9CHMX4LqJpqRtRZjRXftLE3CA70CDkK8jf1crZayHtdImwSsAL8pBHLVaA4K8pmea0UqkTvWkA==",
-    "id": 11
+    "value": "3472F9A32FA314FA834BBF80FC1F1B16~cwC6uXSiwU5eDfTa+jwbMjm27nN36YXynfodyMAWOPShiH98ge28fI3avxdv/GaY2H17gqajfELGPrxlynZcweonn0VP25azXfMLgCjZUthYo+VFBc613qiMtCCVK4mQG+7RDO5G1OCCgWYZkqoiSgOY2WCUgvDJkpk/E207wM/rTJGlrvSbDB/QqbL1FhKqoGj9p3DmIxDYTZwQdfhoYasLFvKbByAfP4W/YFJlU/Q0V7SgevDPq41CAmfHakylWgdVzglueAhgw+fpzq1TwXDkJ1cpZ+u9ESyZNa3m5sHn2J2C8a9REyYizUQDUT9i",
+    "id": 9
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634309122.151404,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634315327.656919,
     "hostOnly": false,
     "httpOnly": true,
     "name": "bm_sv",
@@ -164,12 +136,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "5037838EB8014DCC78C40AE41B62D505~8jEABrtXQO5dIxiCQRm/L8oeb0Q9F+KvDb9PVAY7p8WySh89KBDeVxdUUfCwAjW9ZaHvqIA/Eq9KLg2J/Pmq8fGJ3l9O6lkB1r44OVit6GtmQMD+Tp7QUKfGfIMkKaiqxOVLz44FN4r9exxNnSJYHA==",
-    "id": 12
+    "value": "361BB0087679989865955E815E022B92~Sbt+Smhv3V9m8BgIsxDjKtWJG9+OnWGJlpkHVrtEh/AbFVRHKqIuzuMh18Jiwga2WzZQ6J5UzsWMXI+FYtRNBHmo2rpru3iDZVNmuka5IHtzMrFdPzpPgjDusihsNCbPwUbRAa10FOE2EuSCSfSfX8TK5hNxQ2ys+oQrhjMctTY=",
+    "id": 10
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634317940.665298,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634317942.650641,
     "hostOnly": false,
     "httpOnly": false,
     "name": "bm_sz",
@@ -178,26 +150,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "80E2687DB55DA0D18C290187E69D7C8E~YAAQtfAoF7oWq4N8AQAAVwEVhA2E68UtYVqxOOC6CK/kav/tNkbmu1D12k2EaeO3T2PnF9ZvunRAUZjh9GS/Jpx4HWqArhet1Hsc3qOAN1SjsbKHs1tqnvQO+vhLXGm1Pj5hN2rVbPfpqa7uJ3IcdYuh+KUGJB2NiLbr8EbAgcnCM2rcp+WjUYmVJ4GR0T23FkLsQjsMi1L85BOM7kboWuSB0hqNMiqBrl/TZXeKKq3nx0f9uDOYg+catxVwTZc8bRjiNBHNObVnl792mLL73gnwraz0n5Nxx+SkwThZUg==~3748408~4600899",
-    "id": 13
+    "value": "85B2156351DF593CFF18346ED195F636~YAAQXQ1x36EE5FV8AQAAZAUVhA3A7smejkVJwCvm2GNYYSZcFGPfZt3Z9W/0zb9fKxJ7LxvFcrXKqDUr4Qn+nziBYytiyrNF7rkuHyKAFHY1RMum6Qd596YP//BWniLCEBGjii8tfMSo7o0Q7JdV2nun7YBwCUaWgy8zYcaqdKorUd0zLMwAUr0gZjN7642/fenMXv9InycnKO/TAQ/cYWqlO5eFawAvmPn1oJvQ5rHgUUNrJId5vZXcWVRD5wy1xXs+QNdS4h35Yfs8aK32DF3AVxRff6CSm85dZ0U3K1TRqNL9LZSdEU2YSGDy7lZg0r5pQu0PYocdm2+51UKI9cQ3e6aSUfD/fFjFMQUHbCihPrWfT5LqC6gia2r9wv8DuwVs7e69m9rI8zkX+XS10MmtnHU=~4338230~4470067",
+    "id": 11
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665844232,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "chipset",
-    "path": "/",
-    "sameSite": "unspecified",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "6822002",
-    "id": 14
-},
-{
-    "domain": ".ti.com",
-    "expirationDate": 1639492232,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1639493259,
     "hostOnly": false,
     "httpOnly": false,
     "name": "CONSENTMGR",
@@ -206,12 +164,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "ts:1634301925126%7Cconsent:true",
-    "id": 15
+    "value": "ts:1632830176853%7Cconsent:true",
+    "id": 12
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665839650,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665844136,
     "hostOnly": false,
     "httpOnly": false,
     "name": "coveo_visitorId",
@@ -221,11 +179,25 @@
     "session": false,
     "storeId": "0",
     "value": "b56afeff-9650-45c5-949f-d6472c282a7f",
-    "id": 16
+    "id": 13
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665840153.081529,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634311042.433346,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "da_intState",
+    "path": "/",
+    "sameSite": "strict",
+    "secure": true,
+    "session": false,
+    "storeId": "0",
+    "value": "",
+    "id": 14
+},
+{
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665845242.432246,
     "hostOnly": false,
     "httpOnly": false,
     "name": "da_lid",
@@ -235,11 +207,25 @@
     "session": false,
     "storeId": "0",
     "value": "6F461C239A72EA2BDA16BB990A787153DA|0|0|0",
-    "id": 17
+    "id": 15
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1668519933.716022,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634311042.430915,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "da_sid",
+    "path": "/",
+    "sameSite": "strict",
+    "secure": true,
+    "session": false,
+    "storeId": "0",
+    "value": "8FEE33EB8E33AE9FF76FAA1348D2233568|4|0|3",
+    "id": 16
+},
+{
+    "domain": ".ti.com.cn",
+    "expirationDate": 1666958180.925899,
     "hostOnly": false,
     "httpOnly": false,
     "name": "ELOQUA",
@@ -248,25 +234,12 @@
     "secure": true,
     "session": false,
     "storeId": "0",
-    "value": "GUID=81334D193F6940819EE9071C86119376",
-    "id": 18
+    "value": "GUID=443D61824E09450D9A104DFC43A5D3DA",
+    "id": 17
 },
 {
-    "domain": ".ti.com",
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "ga_ab",
-    "path": "/",
-    "sameSite": "unspecified",
-    "secure": false,
-    "session": true,
-    "storeId": "0",
-    "value": "enabled",
-    "id": 19
-},
-{
-    "domain": ".ti.com",
-    "expirationDate": 1634310032,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634311059,
     "hostOnly": false,
     "httpOnly": false,
     "name": "ga_content_cookie",
@@ -275,12 +248,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "%2Ftistore",
-    "id": 20
+    "value": "%2Fmain%20home%20page",
+    "id": 18
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634310032,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634311059,
     "hostOnly": false,
     "httpOnly": false,
     "name": "ga_page_cookie",
@@ -289,11 +262,25 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "product%20page%20THS6212IRHFT%20zh",
-    "id": 21
+    "value": "main%20home%20page-en",
+    "id": 19
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634309302,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "gpn",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": false,
+    "storeId": "0",
+    "value": "Non-Product",
+    "id": 20
+},
+{
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "login-check",
@@ -303,37 +290,10 @@
     "session": true,
     "storeId": "0",
     "value": "null",
-    "id": 22
+    "id": 21
 },
 {
-    "domain": ".ti.com",
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "pf-accept-language",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": true,
-    "storeId": "0",
-    "value": "zh-CN",
-    "id": 23
-},
-{
-    "domain": ".ti.com",
-    "expirationDate": 1665838668.399755,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "ti_ai",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": false,
-    "storeId": "0",
-    "value": "6351295%7Cmkt%2Cnews%7C%7C6822002",
-    "id": 24
-},
-{
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "ti_bm",
@@ -343,10 +303,10 @@
     "session": true,
     "storeId": "0",
     "value": "",
-    "id": 25
+    "id": 22
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "ti_geo",
@@ -356,10 +316,10 @@
     "session": true,
     "storeId": "0",
     "value": "country=CN|city=SHANGHAI|continent=AS|tc_ip=114.87.113.249",
-    "id": 26
+    "id": 23
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "ti_rid",
@@ -368,11 +328,11 @@
     "secure": true,
     "session": true,
     "storeId": "0",
-    "value": "6bc15cb",
-    "id": 27
+    "value": "9457b55",
+    "id": 24
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "ti_ua",
@@ -382,10 +342,10 @@
     "session": true,
     "storeId": "0",
     "value": "Mozilla%2f5.0%20(Macintosh%3b%20Intel%20Mac%20OS%20X%2010_15_6)%20AppleWebKit%2f537.36%20(KHTML,%20like%20Gecko)%20Chrome%2f94.0.4606.81%20Safari%2f537.36",
-    "id": 28
+    "id": 25
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "ticontent",
@@ -394,11 +354,11 @@
     "secure": false,
     "session": true,
     "storeId": "0",
-    "value": "%2Fauth",
-    "id": 29
+    "value": "%2Fmain%20home%20page",
+    "id": 26
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "tipage",
@@ -407,11 +367,11 @@
     "secure": false,
     "session": true,
     "storeId": "0",
-    "value": "%2Fauth%2Fidp%2Fsso.saml2-zh",
-    "id": 30
+    "value": "%2Fmain%20home%20page%2Fmain%20home%20page-en",
+    "id": 27
 },
 {
-    "domain": ".ti.com",
+    "domain": ".ti.com.cn",
     "hostOnly": false,
     "httpOnly": false,
     "name": "tipageshort",
@@ -420,12 +380,12 @@
     "secure": false,
     "session": true,
     "storeId": "0",
-    "value": "idp%2Fsso.saml2-zh",
-    "id": 31
+    "value": "main%20home%20page-en",
+    "id": 28
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1697380232,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1697381259,
     "hostOnly": false,
     "httpOnly": false,
     "name": "tiSessionID",
@@ -434,12 +394,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "017c83fc5709000cafd328831a8a05078003907000942",
-    "id": 32
+    "value": "017c2c433e580045588fc3c4eb1403078002607000bd0",
+    "id": 29
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665844153.154723,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665845235.704222,
     "hostOnly": false,
     "httpOnly": false,
     "name": "user_pref_currency",
@@ -449,24 +409,11 @@
     "session": false,
     "storeId": "0",
     "value": "\"USD\"",
-    "id": 33
+    "id": 30
 },
 {
-    "domain": ".ti.com",
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "user_pref_givenName",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": true,
-    "storeId": "0",
-    "value": "%E8%94%A1",
-    "id": 34
-},
-{
-    "domain": ".ti.com",
-    "expirationDate": 1665844153.154925,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665845235.704362,
     "hostOnly": false,
     "httpOnly": false,
     "name": "user_pref_language",
@@ -476,11 +423,11 @@
     "session": false,
     "storeId": "0",
     "value": "\"zh-CN\"",
-    "id": 35
+    "id": 31
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665844153.154691,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665845235.704282,
     "hostOnly": false,
     "httpOnly": false,
     "name": "user_pref_shipTo",
@@ -490,11 +437,11 @@
     "session": false,
     "storeId": "0",
     "value": "\"CN\"",
-    "id": 36
+    "id": 32
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1634308292,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1634309319,
     "hostOnly": false,
     "httpOnly": false,
     "name": "userType",
@@ -503,12 +450,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "Registered",
-    "id": 37
+    "value": "Anonymous",
+    "id": 33
 },
 {
-    "domain": ".ti.com",
-    "expirationDate": 1665844232,
+    "domain": ".ti.com.cn",
+    "expirationDate": 1665845259,
     "hostOnly": false,
     "httpOnly": false,
     "name": "utag_main",
@@ -517,12 +464,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "v_id:017c83fc5709000cafd328831a8a05078003907000942$_sn:2$_ss:0$_st:1634310032922$free_trial:true$dc_visit:2$_pn:2%3Bexp-session$ses_id:1634308151892%3Bexp-session$dc_event:1%3Bexp-session$dc_region:ap-northeast-1%3Bexp-session",
-    "id": 38
+    "value": "v_id:017c2c433e580045588fc3c4eb1403078002607000bd0$_sn:24$_ss:0$_st:1634311059805$free_trial:false$dc_visit:12$_pn:6%3Bexp-session$ses_id:1634308132292%3Bexp-session$dc_event:10%3Bexp-session$dc_region:ap-northeast-1%3Bexp-session",
+    "id": 34
 },
 {
-    "domain": ".www.ti.com",
-    "expirationDate": 1665865761,
+    "domain": ".www.ti.com.cn",
+    "expirationDate": 1665866842,
     "hostOnly": false,
     "httpOnly": false,
     "name": "__adroll_fpc",
@@ -531,12 +478,12 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "4cf1fbdeee6d1e8e3a4ad13af8d1db0a-1634302531169",
-    "id": 39
+    "value": "3a7669f09c2d2e7abd89dcdb22696713-1632830265312",
+    "id": 35
 },
 {
-    "domain": ".www.ti.com",
-    "expirationDate": 1665844165,
+    "domain": ".www.ti.com.cn",
+    "expirationDate": 1665845242,
     "hostOnly": false,
     "httpOnly": false,
     "name": "__ar_v4",
@@ -545,24 +492,11 @@
     "secure": false,
     "session": false,
     "storeId": "0",
-    "value": "WREFDPJ43RDSFLSFJE2LEU%3A20211014%3A1%7C5ZEY53VG6BHE5IFLEGH6HG%3A20211014%3A1%7CFYKLRGQ5PRCUTC2HNS6VNQ%3A20211014%3A1%7C4E2I4BNULVAQLA56C36K7M%3A20211014%3A1%7CCTLW3NO3WNAFDL4EJKNQD6%3A20211014%3A1%7CKRTNFQKVY5BW3NX3POEI4A%3A20211014%3A1%7CQFXRHQEHOJDMLHSLFIWCLO%3A20211014%3A4%7C2XNKMR6P4VGD5MD3ZP4SQR%3A20211014%3A4%7CG3YHLXUICZC3XKDXYVVLO4%3A20211014%3A4%7CYHXMSR6KVVHP3GVAHYZHTF%3A20211014%3A12%7CTH5I4ZH44BE57MRNCQW6WD%3A20211014%3A12%7C3OPH2YZKH5EPHOAY2EZOAG%3A20211014%3A12",
-    "id": 40
+    "value": "DMF3YWNTG5HTZP5WNBOFAA%3A20210928%3A5%7C3GLIROW56VGDFM2KUHWC42%3A20210928%3A5%7CS4HGNHQ7DNGNJDUXJ2XJA3%3A20210928%3A5%7CG3YHLXUICZC3XKDXYVVLO4%3A20210928%3A14%7C2XNKMR6P4VGD5MD3ZP4SQR%3A20210928%3A14%7CQFXRHQEHOJDMLHSLFIWCLO%3A20210928%3A14%7CIEC2AV647FHDNBUGU23SN7%3A20210929%3A5%7CFJT6BT4YWNEOROP3BJ7ITA%3A20210929%3A5%7C4PSIDGQM4FBWJL6XJJ2EQC%3A20210929%3A6",
+    "id": 36
 },
 {
-    "domain": "www.ti.com",
-    "hostOnly": true,
-    "httpOnly": true,
-    "name": "acceleratorSecureGUID",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": true,
-    "storeId": "0",
-    "value": "d27ebfebc43e4c45f550866724f91ccbe90878ce",
-    "id": 41
-},
-{
-    "domain": "www.ti.com",
+    "domain": "www.ti.com.cn",
     "hostOnly": true,
     "httpOnly": true,
     "name": "auth_session",
@@ -571,25 +505,12 @@
     "secure": true,
     "session": true,
     "storeId": "0",
-    "value": "Ns34DjUorC9ZbOQy.HdP_eK-_NQ7TZKsLuWjjrrKfUE7b_1HskRRbXbKLDuZAZPMudAKNQJv02C-auhTUAG3PIcCzDXSX6XFWP8v0_YSXKVJ5l2ds_29Azd8BQ3tvjJDE6_2CMcfUTkEroO9FdeIOGjvWZLe4R4jVnHseZ0tksIdS0Epx0BelreGSQBwWWsSzms0myl5BeZlOu21MNq7kReBVj2U3LYs_lFTILXrksbrsl6sdHcQcwP5jlJ8aOb4SgDhaxPfP7fS1M6WZml1jvKWygF1FGDjw3OliI5a-utycYPimMwjK_nBBAwmrmoYQPbJdIJhahHd2tr4yL72lg7x2JOLvzRqVMqX0SFvZQ3ja0VkLreyMqwgh0KU2JJXjMwKbDYdPc16TnGnzCry8A0Mn6WfYMJz6k5-MAs5MvD-D0T16fkRs2jnfsoOEFtriVYc8yxclFTNc8BhnBakEf6FPBw2aXS_Y3VS4wTmHnn86reWAzbq1jcTExjaQFXq5PpQho7rAluCGRSrz7QdiT0Pb_BXLItBnwGzskA-RDFPBKKz-dt_dQ3knrvAcr2uK07sr-8E3fsy5dILyerSVJOPTgTewgxA33AfS0MzlI4AQOIun3-NQEYJK3sJRu1AbQ3XzeFnNWoj1BrwtjDwogA4hkUWqRo5A3KYsxwsd63Nb_JUlMDzeYvboyrNZL6cR6C7R0jVTv2roORQl3FHVRYyl7aTXLW2Rsw_xGqKUYRLhnTqaVxwyaSYyBLqNXh_LCjYF_wIJglPRsay8AKb0jq8iJcNnYNKI1MD8rcXsU6XA3CgZfLSgA0jmcw20kJdkT6tPmqFoI4lt4OTlXcUpssqpm4x7CRJsbX9HyeTDhPteyWyByEKcnE-kY4jHBjtaWrUh6uYakrwlYlUqiOEx_uNzM0nWpLZufcIJcDIxwOCwPgLZexeXM6NQIEI8iWk5NLeIRFVdX0qMChoMZFSC24XZa8ej_WGDxcnGQehfdscGdCMoMuzdRKN_-uiONt1tvGYGTomhkQNnLJm2pnV5TT9WUa48fTUXAP_0YgwDip1vyiG8VFycqxUCm6fg8TxRio5MCAPAeMlIjUMpisToB9tWGyesvz1NMZ6pU8ldaRAblfPYS7hLEVn_7L4wBmvrYRVM4KicePPmSCgAiSmHrbmE4ohXVxbOsmHDnEOVVywUxPQQK02KGcKuxn4BJYHFNwijSJOchJQCJfvvIVNv2jWGnarGiZsrleyVjWTx3tX85bM7K3Jqg5CM9tNQPZx4AUEiOCc88lZpotaIVGM0w9ukVA2v48ophI_prtXxlaWk9fdGbIQZ8JgooncU8VIE9vn8jQtUcr3ZI_kLy_c94zuEYvBKEYT5R5bPJ_ixvxlwSGtTYE4oRjDYt8BNh8t_w3Wk7nP8Ey-BG24DnUcWGpicw28HXjgLzA7bHqObiNaGq58rUzea54mWr1a1oeZEklu1Vlq9EEUXldEom09mH2fQ-V4Gm26izqlRZh1nhv7X8QU93-IgQUzix0HIwtCfPYIj0ALW2tXoTYQG2I-KG4pp4vTx0xIKTRkNl0e-5Q1EIOcLhM-wA3qqKzlG7fwaCLEukYT0k4Kpi5XlNO5S3i-sO9EDw0YOfIVCUhzQ2u0I1O-QHxLA_xytugKe55VEgkW2h_nwPjEmsdPYItaMkMrGVRr_3T_303ompz6NzgKy31oK52-GYxAPcNDY3K5Z_diIBerXE48ehh_ObHxn5dGGCIMCTagZhbQ1MvtRs4iI-uZZXe9UeaENjQ.0hA1BImAb7TeY7LF4_1kdQ",
-    "id": 42
+    "value": "gsNrHdmgyAkIz_gN.7wl8kGrWFefwD-v-frCE_bkqpmAQk8kf5irKHthk5u41FKo5GsRA1oyHD6Z1h2Ki4bgcVLs0z1rB1MkWHJPHHiTulatwGs4V9ZtlHT37q0iLp4mRQRL5gfJiSb4HDmz6soNIWuq9HSejfy9vOItj-j9ONjnx_t15LOAuKY5pV1NFv6rOwjrlGAtXvU7ohCA6iPrg_fVoGq4mnKSE6VesnAU8MFTuCuPL_j6oPjHT5DWhLjdWDRukbTQoP4hpAP3QZxq0Tmptwe3eRd0NlM_1c3gUcKTcOcb10LFraL3N-WYKoUipQWfHj51vAtadvOW_5FyuG6Yt6IvPOAKP1Lslu9dfHUN6nYWY_O5msxmT1CMvv8_Vat3Tk5feZCArjzFgGFCxRLkH870NB6_I4KasuAC5zR8N-om5NK-g4k1ahQ2ZPe1CqTzVbi4ONEc8idkZXf4j5F7wEgYco8aS8qhKlvQWqidRXJiYZhdkhpekDvE7dkhizDLbmC2m4uDqgBSQcm1qQAdxyAvbNL2CYHJnPxTOjhdKY-cKOhbpdBA9-BQhCkRSLUeXXvDQliM_5sLs51FjWbCZEzzOQONatVmcgDVGNUCGCI_TeBY2imgIp0Toe14zgIcCRd0tt9A3PI9erMZTJSYHTzkwW9NAEPOtfB5IMs2GYqQoh6iHprf4ukQx70hzw9LQfZ8JePnJShcFQeWFNXwMJ0Wm8Uyz7luiy7M238gTu6xBjltrF-h2qJHFPfpCQlosPPFnRPAyOnAey6vzhLOr3OXZ6ElJlfcepyH2Py2RpibjaDQRDFDR29QC-x_sCDRIgCSDVjic26_BN02g5IfczrQ34dpraBMy8-10qxbh8LN2W68SrUN6F8rmP-C_7zLeG3BtkNVGElsKH4zFVCimoRlOilbakct58EuYPzxeyw7cgmB2XDGRt_ngfXT12EN3mDwdMRwU-7yCO5CPVFL7GKl_xkyaZ326JCkOhU48DzZuLblppbdYRdDUmFFNqbeWxBQFSvxJHJbE68EA0SxsIEHtBRnYxzCfP55cDO8XF520LOoIyUeCLrorfrRZ1s8s8bkwilAyAnC3v6HaERqVeyvWOEfGx2SuCy3W-J3S-9NL2RITO6ceLLiC_d5bBlrGzqM07xcB12bjkext_3Ijarm9A3azz9xVzH2_KWgFCfP4GWwcYssAxxsQemKsnY2U27W0PrWWUiRnj7CkJE_FO0_1B14T-zhBnCqaqpmMV4-rgSdL19cVUrKJrV4-gl5A_D25LYYLfnHjBf08F2umKgixnbVbWUfHfzsfZDiEBO04lr_uFxNc72bq9UDhGjeIZCPDf3ye7-4-SVrudtzVw3SPda1_ed97DDtZU1VBZ692-AaABKFKUNiTjKGsZbtbQK_i1ET1gkNvNMGcps6lU_4Aezp_7aizlddm9MWRUwgU443LGfCtKFV8HBOuqVutwxb6CpdXAtIHdpljDXBwHvRiIhw9RSkhcljTMdiWSD2w5MM5ro23hslpWp8ui873Zye-U2VQrKBjETaAsG4F_AbunFFi1lZlcXRcvUaHes4HWrICF4FOO12vZeXrCG-jsLTYm7L1c7G04olUJcSjNcQvnr_jqOb6fHXLH-9IwsPE8xT04MC8Z938FPmdtNGU.zPG7BRx647_FTkt8SgKP3w",
+    "id": 37
 },
 {
-    "domain": "www.ti.com",
-    "hostOnly": true,
-    "httpOnly": true,
-    "name": "JSESSIONID",
-    "path": "/store",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": true,
-    "storeId": "0",
-    "value": "6659B04AE570CF9575FC45C776AE8886.store-prod-hybris2",
-    "id": 43
-},
-{
-    "domain": "www.ti.com",
-    "expirationDate": 1665844153.881847,
+    "domain": "www.ti.com.cn",
+    "expirationDate": 1665845236.163359,
     "hostOnly": true,
     "httpOnly": false,
     "name": "last-domain",
@@ -598,11 +519,11 @@
     "secure": true,
     "session": false,
     "storeId": "0",
-    "value": "www.ti.com",
-    "id": 44
+    "value": "www.ti.com.cn",
+    "id": 38
 },
 {
-    "domain": "www.ti.com",
+    "domain": "www.ti.com.cn",
     "hostOnly": true,
     "httpOnly": false,
     "name": "login-check",
@@ -612,24 +533,10 @@
     "session": true,
     "storeId": "0",
     "value": "null",
-    "id": 45
+    "id": 39
 },
 {
-    "domain": "www.ti.com",
-    "expirationDate": 1981204153.154646,
-    "hostOnly": true,
-    "httpOnly": true,
-    "name": "ti-cart",
-    "path": "/store",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": false,
-    "storeId": "0",
-    "value": "1e72890c-3b63-41c0-b942-23cd02e836e1",
-    "id": 46
-},
-{
-    "domain": "www.ti.com",
+    "domain": "www.ti.com.cn",
     "hostOnly": true,
     "httpOnly": false,
     "name": "user_pref_givenName",
@@ -639,32 +546,19 @@
     "session": true,
     "storeId": "0",
     "value": "\"%E8%94%A1\"",
-    "id": 47
+    "id": 40
 },
 {
-    "domain": "www.ti.com",
+    "domain": "www.ti.com.cn",
     "hostOnly": true,
     "httpOnly": false,
-    "name": "user_pref_permanentId",
+    "name": "user_pref_givenNameLocalLanguage",
     "path": "/",
     "sameSite": "no_restriction",
     "secure": true,
     "session": true,
     "storeId": "0",
-    "value": "\"6822002\"",
-    "id": 48
-},
-{
-    "domain": "www.ti.com",
-    "hostOnly": true,
-    "httpOnly": false,
-    "name": "user_pref_uid",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": true,
-    "session": true,
-    "storeId": "0",
-    "value": "\"scnu_xiaokun@qq.com\"",
-    "id": 49
+    "value": "\"%E8%94%A1\"",
+    "id": 41
 }
 ]
