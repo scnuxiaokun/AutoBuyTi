@@ -10,7 +10,7 @@ import common
 import proxy
 
 def addtocart(productCode):
-    addtocart_url = "http://www.ti.com/occservices/v2/ti/addtocart"
+    addtocart_url = "https://www.ti.com/occservices/v2/ti/addtocart"
     click_url = "https://www.ti.com.cn/AmOjk0fvT/J8j/8V0/oI2Ez1rk_18I/3ftOkGQShi/FUc-Ej0B/EA8Q/IBQPZhcB"
 
     # session = requests.Session()
@@ -24,7 +24,6 @@ def addtocart(productCode):
     header = {
         "Host": 'www.ti.com.cn',
         "Connection": 'keep-alive',
-        "Content-Length": '203',
         "Pragma": 'no-cache',
         "Cache-Control": 'no-store, must-revalidate',
         "sec-ch-ua": '"Chromium";v="94", "Google Chrome";v="94", ";Not A Brand";v="99"',
