@@ -6,6 +6,8 @@ THS6212IRHFT
 查询单个商品型号库存
 https://www.ti.com.cn/storeservices/cart/opninventory?opn=HD3SS3212IRKSR
 
+https://www.ti.com.cn/storeservices/cart/inventory
+
 查询商品信息
 https://www.ti.com.cn/search/opn?searchTerm=DP83TC811RWRNDTQ1
 
