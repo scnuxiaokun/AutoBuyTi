@@ -1,19 +1,32 @@
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
-import time
+from time import sleep
 import random
 import json
+from threading import Thread
+import random
 
-# 窗体构建
-opt = webdriver.FirefoxOptions()
-opt.add_argument("--headless")
-opt.add_argument('--disable-gpu')
-dr = webdriver.Firefox(options=opt)
+# 无头模式
+# opt = webdriver.FirefoxOptions()
+# opt.add_argument("--headless")
+# opt.add_argument('--disable-gpu')
+# dr = webdriver.Firefox(options=opt)
+# 有界面
+dr = webdriver.Firefox()
 
-# 约束窗体大小
-dr.set_window_size(1024, 1366)
-dr.maximize_window()
-time.sleep(1)
+def async(f):
+  def wrapper(*args, **kwargs):
+    thr = Thread(target=f, args=args, kwargs=kwargs)
+    thr.start()
+
+  return wrapper
+
+@async
+def threedClick():
+  flag = 1
+  while(flag):
+    randClick()
+    sleep(random.randint(10, 20))
 
 # 随机点击
 def randClick():
@@ -37,6 +50,7 @@ def randClick():
   y = random.uniform(location['y'], size['width'])
   print("tips:点击坐标x=%s,y=%s",x,y)
   ActionChains(dr).move_by_offset(x, y).click().perform()
+  ActionChains(dr).move_by_offset(-x, -y).perform()
 
 # 爬url
 def foxCreate(url):
@@ -81,10 +95,9 @@ url = 'https://www.ti.com/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
 refershCookie(dr)
 getCookies(dr)
-
-# 轮询执行点击方法
-randClick()
+threedClick()
 
 # 关闭窗体
-dr.quit()
+# dr.close()
+# dr.quit()
 
