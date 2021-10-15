@@ -20,7 +20,7 @@ import order
 def getInventory(url):
     # logger.info("请求URL:"+url)
     # response = requests.get(url=url)
-    response = proxy.get(url)
+    response = proxy.getV2(url)
     if response.status_code == 200:
         return json.loads(response.text).get('inventory')
     else:
