@@ -19,11 +19,12 @@ def get(targetUrl):
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
     # logger.info(athorization+"@"+proxyUrl)
-    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
+    timeout = 3
+    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=timeout)
     if r.status_code == 302 or r.status_code == 301:
         loc = r.headers['Location']
         url_f = loc
-        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
+        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=timeout)
         return r
     return r
 
@@ -41,11 +42,12 @@ def getV2(targetUrl):
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
-    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
+    timeout = 3
+    r = requests.get(url=targetUrl, headers=headers, proxies=proxy, verify=False, allow_redirects=False,timeout=timeout)
     if r.status_code == 302 or r.status_code == 301:
         loc = r.headers['Location']
         url_f = loc
-        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
+        r = requests.get(url_f, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=timeout)
         return r
     return r
 
