@@ -13,11 +13,13 @@ def getParentCode(productCode):
     url = "http://www.ti.com.cn/search/opn?searchTerm="+productCode
 
     try:
-        response = proxy.get(url)
+        response = proxy.getV3(url)
         if response.status_code == 200:
-            parentCode = json.loads(response.text).get('genericPartNumber');
-            logger.info("productCode:"+productCode+" parentCode:"+parentCode)
-            return (productCode, parentCode)
+            map = json.loads(response.text)
+            if 'genericPartNumber' in map:
+                parentCode = map.get('genericPartNumber');
+                logger.info("productCode:"+productCode+" parentCode:"+parentCode)
+                return (productCode, parentCode)
         else:
             logger.info("ERROR code="+str(response.status_code))
     except BaseException as Argument:
@@ -52,7 +54,7 @@ if __name__ == '__main__':
         else:
             productCodeList.append(productCode)
 
-    executor = ThreadPoolExecutor(max_workers=100)
+    executor = ThreadPoolExecutor(max_workers=1)
     tasks = [executor.submit(getParentCode, (item)) for item in productCodeList]
     for task in as_completed(tasks):
         try:
@@ -71,6 +73,8 @@ if __name__ == '__main__':
         else:
             result[parentCode] = [productCode]
 
+    for parentCode, codeList in result.items():
+        result[parentCode] = list(set(codeList))
     logger.info(result)
     fo = open("formattedData.json", "w")
     fo.write(json.dumps(result))
