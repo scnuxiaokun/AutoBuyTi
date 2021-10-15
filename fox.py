@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 import random
+import json
 
 # 窗体构建
 opt = webdriver.FirefoxOptions()
@@ -48,9 +49,30 @@ def foxCreate(url):
     print('tips:Access Denied')
     exit()
 
+
+def getCookies(dr):
+  dictCookies = dr.get_cookies()  # 获取list的cookies
+  jsonCookies = json.dumps(dictCookies)  # 转换成字符串保存
+
+  with open('damai_cookies.txt', 'w') as f:
+    f.write(jsonCookies)
+  print('tips:cookies保存成功')
+
+def refershCookie(dr):
+  f1 = open('cookie.txt')
+  cookie = f1.read()
+  cookie = json.loads(cookie)
+  for c in cookie:
+    dr.add_cookie(c)
+  # 刷新页面
+  print('tips:cookies替换成功')
+  dr.refresh()
+
 # 定时执行
 url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
+refershCookie(dr)
+getCookies(dr)
 randClick()
 
 # 关闭窗体
