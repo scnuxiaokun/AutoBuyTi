@@ -21,14 +21,15 @@ def randClick():
   # e = dr.find_element_by_xpath('//*[@id="searchboxheader"]/div[1]/div/div/div[1]/input')
   # ActionChains(dr).click(e).perform()
 
-  # 商品标题
-  # e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h1/span')
-  # ActionChains(dr).click(e).perform()
-
-  # 价格表
   # {'x': 350, 'y': 236}
   # {'height': 40.0, 'width': 234.9166717529297}
-  e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h1/span')
+  try:
+    # 价格表
+    e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h1/span')
+  except:
+    # 商品标题
+    e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h1/span')
+
   location = e.location
   size = e.size
 
