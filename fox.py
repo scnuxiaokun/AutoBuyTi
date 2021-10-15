@@ -34,9 +34,10 @@ def randClick():
 
   x = random.uniform(location['x'], size['height'])
   y = random.uniform(location['y'], size['width'])
-  print("tips:x=%s,y=%s",x,y)
+  print("tips:点击坐标x=%s,y=%s",x,y)
   ActionChains(dr).move_by_offset(x, y).click().perform()
 
+# 爬url
 def foxCreate(url):
   # 隐形加载
   dr.implicitly_wait(5)
@@ -49,17 +50,23 @@ def foxCreate(url):
     print('tips:Access Denied')
     exit()
 
-
+# 获取浏览器cookie
 def getCookies(dr):
-  dictCookies = dr.get_cookies()  # 获取list的cookies
-  jsonCookies = json.dumps(dictCookies)  # 转换成字符串保存
+  dictCookies = dr.get_cookies()
+  jsonCookies = json.dumps(dictCookies)
 
-  with open('damai_cookies.txt', 'w') as f:
+  with open('driver_cookie.txt', 'w') as f:
     f.write(jsonCookies)
-  print('tips:cookies保存成功')
+  print('tips:driver_cookie保存成功')
 
+# 替换cookie后刷新浏览器
 def refershCookie(dr):
-  f1 = open('cookie.txt')
+  # f1 = open('cookie.txt')
+  print('tips:current_url=' + dr.current_url)
+  try:
+    f1 = open('driver_cookie.txt')
+  except:
+    f1 = open('cookie.txt')
   cookie = f1.read()
   cookie = json.loads(cookie)
   for c in cookie:
@@ -67,12 +74,14 @@ def refershCookie(dr):
   # 刷新页面
   print('tips:cookies替换成功')
   dr.refresh()
+  print('tips:浏览器刷新成功')
 
-# 定时执行
-url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT'
+url = 'https://www.ti.com/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
 refershCookie(dr)
 getCookies(dr)
+
+# 轮询执行点击方法
 randClick()
 
 # 关闭窗体
