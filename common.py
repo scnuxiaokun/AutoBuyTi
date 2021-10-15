@@ -1,4 +1,4 @@
-import logging
+import logging,json
 
 def initLoger():
     logger = logging.getLogger()
@@ -23,3 +23,16 @@ def initLoger():
     logger.addHandler(consoleHandler)
     logger.addHandler(fileHandler)
     return logger
+
+def getCookie():
+    f = open("driver_cookie.txt")
+    cookieString = f.read()
+    f.close()
+    cookieList = json.loads(cookieString)
+    result = []
+    for cookieItem in cookieList:
+        name = cookieItem['name']
+        value = cookieItem['value']
+        result.append(name+"="+value)
+
+    return "; ".join(result)
