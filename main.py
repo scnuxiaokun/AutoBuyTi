@@ -35,7 +35,7 @@ def autoBuyProductByCode(productCode):
     processHasInventory(productCode, inventory, t)
 
 def autoBuyProductByCodeV2(parentCode, productCodeList):
-    blackList = ["TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR", "TPS63805YFFT"]
+    blackList = ["HD3SS460RHRT","TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR", "TPS63805YFFT"]
     # 过滤掉有库存但不能买的商品
     for code in productCodeList:
         if code in blackList:
