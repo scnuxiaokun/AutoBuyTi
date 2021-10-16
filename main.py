@@ -59,6 +59,12 @@ def autoBuyProductByCodeV2(parentCode, productCodeList):
         logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
 
 def autoBuyProductByCodeV3(parentCode, productCodeList, ip_port):
+    blackList = ["HD3SS460RHRT", "TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR",
+                 "TPS63805YFFT"]
+    # 过滤掉有库存但不能买的商品
+    for code in productCodeList:
+        if code in blackList:
+            return
     url = "https://www.ti.com.cn/productmodel/" + parentCode + "/tistore"
     t = time.time()
     response = proxy.getV4(url, ip_port)
