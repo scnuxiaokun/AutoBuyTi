@@ -61,9 +61,11 @@ def autoBuyProductByCodeV2(parentCode, productCodeList):
 def processHasInventory(productCode, inventory, timespent):
     t = timespent
     if inventory > 0 :
-        f = open("inventory.txt", "a")
-        f.write(productCode + "," + str(inventory) + "\n")
-        f.close()
+        if inventory >= 250 :
+            t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            f = open("inventory.txt", "a")
+            f.write(t + "," + productCode + "," + str(inventory) + "\n")
+            f.close()
         logger.info("["+productCode+"]" + "库存数量:" + str(inventory)  + "t=" + t)
     elif inventory == 0:
         logger.info("[" + productCode + "]" + "没库存" + "t=" + t)

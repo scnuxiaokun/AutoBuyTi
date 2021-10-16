@@ -1,4 +1,8 @@
 # AutoBuyTi
+
+测试帐号: lzr9921@88.com
+密码:  Liu4025693
+
 有数据的两个商吕
 ONET8551TYS4
 THS6212IRHFT
