@@ -52,17 +52,17 @@ def addtocart(productCode):
     # logger.info(response.text)
     return response
 
-logger = common.initLoger()
-if __name__ == '__main__':
-    logger.info('==================PyCharm Start====================')
-
-    # loopProductListToGetInventoryV2()
-    # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
-    # autoBuyProductByCode("BQ7692000PWR")
-
-    # 通过url直接加上请求参数，与通过params传参效果是一样的
-
-    response =addtocart("THS6212IRHFT")
-    logger.info(response.status_code)
-    logger.info(response.text)
-    logger.info('==================PyCharm End====================')
+# logger = common.initLoger()
+# if __name__ == '__main__':
+#     logger.info('==================PyCharm Start====================')
+#
+#     # loopProductListToGetInventoryV2()
+#     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
+#     # autoBuyProductByCode("BQ7692000PWR")
+#
+#     # 通过url直接加上请求参数，与通过params传参效果是一样的
+#
+#     response =addtocart("THS6212IRHFT")
+#     logger.info(response.status_code)
+#     logger.info(response.text)
+#     logger.info('==================PyCharm End====================')

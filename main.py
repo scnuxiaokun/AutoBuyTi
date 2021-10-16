@@ -58,6 +58,25 @@ def autoBuyProductByCodeV2(parentCode, productCodeList):
     else:
         logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
 
+def autoBuyProductByCodeV3(parentCode, productCodeList, ip_port):
+    url = "https://www.ti.com.cn/productmodel/" + parentCode + "/tistore"
+    t = time.time()
+    response = proxy.getV4(url, ip_port)
+    t = str(time.time() - t)
+    if response.status_code == 200:
+        list = json.loads(response.text)
+        productCodeMap = {}
+        for code in productCodeList:
+            productCodeMap[code] = 1
+
+        for item in list:
+            productCode = item['orderablePartNumber']
+            inventory = item['inventory']
+            if productCode in productCodeMap:
+                processHasInventory(productCode, int(inventory), t)
+    else:
+        logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
+
 def processHasInventory(productCode, inventory, timespent):
     t = timespent
     if inventory > 0 :
@@ -117,6 +136,37 @@ def loopProductListToGetInventoryV2():
 
     logger.info("===========全部完成===========")
 
+def getUntilIpPort(ipPortQueue):
+    while 1:
+        ipPort = proxy.getIpPort(ipPortQueue)
+        if ipPort is None:
+            time.sleep(1)
+        else:
+            return ipPort
+
+def loopProductListToGetInventoryV3():
+    maxThreadCount = 600
+    executor = ThreadPoolExecutor(max_workers=maxThreadCount)
+    ipPortQueue = queue.SimpleQueue()
+    while 1:
+        t = time.time()
+        ipPort = getUntilIpPort(ipPortQueue)
+        fo = open("formattedData.json")
+        formattedData = fo.read()
+        parentCodeMap = json.loads(formattedData)
+
+        all_task = []
+
+        for parentCode, productCodeList in parentCodeMap.items():
+            all_task.append(executor.submit(autoBuyProductByCodeV3, parentCode, productCodeList, ipPort))
+
+        wait(all_task, return_when=ALL_COMPLETED)
+        t = str(time.time() - t)
+        logger.info("遍历一轮需要时间:"+t)
+
+    logger.info("===========全部完成===========")
+
+
 def loopProductListToGetInventory():
     maxThreadCount = 500
     maxIpCount = 100
@@ -151,7 +201,7 @@ logger = common.initLoger()
 if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
 
-    loopProductListToGetInventoryV2()
+    loopProductListToGetInventoryV3()
     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
     # autoBuyProductByCode("BQ7692000PWR")
 
