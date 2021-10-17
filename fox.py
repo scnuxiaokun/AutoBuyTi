@@ -5,6 +5,7 @@ import random
 import json
 from threading import Thread
 import random
+import time
 
 # 无头模式
 # opt = webdriver.FirefoxOptions()
@@ -13,20 +14,6 @@ import random
 # dr = webdriver.Firefox(options=opt)
 # 有界面
 dr = webdriver.Firefox()
-
-def async(f):
-  def wrapper(*args, **kwargs):
-    thr = Thread(target=f, args=args, kwargs=kwargs)
-    thr.start()
-
-  return wrapper
-
-@async
-def threedClick():
-  flag = 1
-  while(flag):
-    randClick()
-    sleep(random.randint(10, 20))
 
 # 随机点击
 def randClick():
@@ -91,11 +78,37 @@ def refershCookie(dr):
   dr.refresh()
   print('tips:浏览器刷新成功')
 
+def expand_shadow_element(element):
+  retryCount = 0
+  while 1:
+    retryCount += 1
+    if retryCount > 20:
+      return None
+    shadow_root = dr.execute_script('return arguments[0].shadowRoot.children', element)
+    if len(shadow_root) > 0:
+      return shadow_root
+    else:
+      time.sleep(1)
+
 url = 'https://www.ti.com/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
-refershCookie(dr)
-getCookies(dr)
-threedClick()
+# document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[0]
+# .getElementsByTagName('ti-input')[0].shadowRoot.children[0].value=999
+e = dr.find_elements_by_class_name('add_to_cart_form')
+e = e[1]
+e = e.find_elements_by_tag_name('ti-add-to-cart')
+e = e[0]
+e = expand_shadow_element(e)
+e = e[1]
+e = e.find_elements_by_tag_name('ti-input')
+e = e[0]
+e = expand_shadow_element(e)
+e = e[1]
+#输入框
+print(e)
+# refershCookie(dr)
+# getCookies(dr)
+# threedClick()
 
 # 关闭窗体
 # dr.close()
