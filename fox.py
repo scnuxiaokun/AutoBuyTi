@@ -90,22 +90,46 @@ def expand_shadow_element(element):
     else:
       time.sleep(1)
 
+def findStockInputElement():
+    e = dr.find_elements_by_class_name('add_to_cart_form')
+    e = e[1]
+    e = e.find_elements_by_tag_name('ti-add-to-cart')
+    e = e[0]
+    e = expand_shadow_element(e)
+    e = e[1]
+    e = e.find_elements_by_tag_name('ti-input')
+    e = e[0]
+    e = expand_shadow_element(e)
+    e = e[1]
+    return e
+
+
+def findAddCartButton():
+  e = dr.find_elements_by_class_name('add_to_cart_form')
+  e = e[1]
+  e = e.find_elements_by_tag_name('ti-add-to-cart')
+  e = e[0]
+  e = expand_shadow_element(e)
+  e = e[2]
+  e = expand_shadow_element(e)
+  e = e[1]
+  return e
+
 url = 'https://www.ti.com/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
-# document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[0]
-# .getElementsByTagName('ti-input')[0].shadowRoot.children[0].value=999
-e = dr.find_elements_by_class_name('add_to_cart_form')
-e = e[1]
-e = e.find_elements_by_tag_name('ti-add-to-cart')
-e = e[0]
-e = expand_shadow_element(e)
-e = e[1]
-e = e.find_elements_by_tag_name('ti-input')
-e = e[0]
-e = expand_shadow_element(e)
-e = e[1]
+# 库存输入框
+# document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[0].getElementsByTagName('ti-input')[0].shadowRoot.children[0].value=999
+# 加入购物车按钮
+# document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[1].shadowRoot.children[0]
 #输入框
-print(e)
+inputElement = findStockInputElement()
+print(inputElement)
+# inputElement.clear()
+# inputElement.send_keys(3)
+
+#加入购物车
+addCartButton = findAddCartButton()
+
 # refershCookie(dr)
 # getCookies(dr)
 # threedClick()
