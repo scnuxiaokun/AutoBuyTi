@@ -115,8 +115,8 @@ def findAddCartButton():
   e = e[1]
   return e
 
-  def setInputElementValue(element, value):
-    dr.execute_script('return arguments[0].value=' + str(value), element)
+def setInputElementValue(element, value):
+  dr.execute_script('return arguments[0].value=' + str(value), element)
 
 url = 'https://www.ti.com/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
