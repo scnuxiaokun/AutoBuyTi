@@ -3,10 +3,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 import random
 import json
-from threading import Thread
+import threading
 import random
 import time
 import common
+import main
 
 # 无头模式
 # opt = webdriver.FirefoxOptions()
@@ -16,36 +17,49 @@ import common
 # 有界面
 dr = webdriver.Firefox()
 
-# 随机点击
-def randClick():
-  # 顶部输入框
-  # e = dr.find_element_by_xpath('//*[@id="searchboxheader"]/div[1]/div/div/div[1]/input')
-  # ActionChains(dr).click(e).perform()
+def checkInventory():
+  while (1):
+    log.info('查库存')
+    inventory = 0
+    if inventory > 0:
+      addCart()
+      break
+    sleep(10)
 
+def threedClick():
+  while(1):
+    randNum = random.randint(10, 20)
+    randClick(randNum)
+    inventory = 0
+    if inventory > 0:
+      break
+    sleep(randNum)
+
+# 随机点击
+def randClick(randNum):
+  log.info('随机点击')
+  try:
+    # 高速差分宽带 PLC/HPLC 线路驱动器放大器
+    e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h2')
+    ActionChains(dr).move_to_element_with_offset(e,0,10).click().perform()
+    log.info('点对了')
+  except:
+    log.info('点错了')
+  # 价格表
   # {'x': 350, 'y': 236}
   # {'height': 40.0, 'width': 234.9166717529297}
-  try:
-    # 价格表
-    e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h1/span')
-  except:
-    # 商品标题
-    e = dr.find_element_by_xpath('/html/body/main/div[2]/div[1]/div[2]/div[2]/section/div[1]/div[2]/h1/span')
-
-  location = e.location
-  size = e.size
-
-  x = random.uniform(location['x'], size['height'])
-  y = random.uniform(location['y'], size['width'])
-  print("tips:点击坐标x=%s,y=%s",x,y)
-  ActionChains(dr).move_by_offset(x, y).click().perform()
-  ActionChains(dr).move_by_offset(-x, -y).perform()
+  # x = random.uniform(e.location['x'], e.size['height'])
+  # y = random.uniform(e.location['y'], e.size['width'])
+  # print("tips:点击坐标x=%s,y=%s",x,y)
+  # ActionChains(dr).move_by_offset(x, y).click().perform()
+  # ActionChains(dr).move_by_offset(-x, -y).perform()
 
 # 爬url
 def foxCreate(url):
   # 打开一个新tab
-  dr.execute_script("window.open();")
-  handles = dr.window_handles
-  dr.switch_to.window(handles[1])
+  # dr.execute_script("window.open();")
+  # handles = dr.window_handles
+  # dr.switch_to.window(handles[1])
   dr.implicitly_wait(5)
   dr.get(url)
 
@@ -55,7 +69,6 @@ def foxCreate(url):
   if 'Access Denied' in html:
     print('tips:Access Denied')
     exit()
-
 
 # 获取浏览器cookie
 def getCookies(dr):
@@ -154,6 +167,21 @@ def findAddCartButton():
 def setInputElementValue(element, value):
   dr.execute_script('return arguments[0].value=' + str(value), element)
 
+def addCart():
+  # 输入框
+  inputElement = findStockInputElement()
+  tiInputElement = findTiInputElement()
+  print(inputElement)
+  print(tiInputElement)
+  inputElement.clear()
+  setInputElementValue(inputElement, 9)
+  setInputElementValue(tiInputElement, 9)
+
+  # 加入购物车
+  addCartButton = findAddCartButton()
+  addCartButton.click()
+
+
 log = common.initLoger()
 # 隐形加载
 dr.implicitly_wait(5)
@@ -164,28 +192,9 @@ waitIfNotLogin(dr)
 #打开一个商品页面
 url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
-# refershCookie(dr)
-# 库存输入框
-# document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[0].getElementsByTagName('ti-input')[0].shadowRoot.children[0].value=999
-# 加入购物车按钮
-# document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[1].shadowRoot.children[0]
-#输入框
-inputElement = findStockInputElement()
-tiInputElement = findTiInputElement()
-print(inputElement)
-print(tiInputElement)
-inputElement.clear()
-setInputElementValue(inputElement, 9)
-setInputElementValue(tiInputElement, 9)
 
-#加入购物车
-addCartButton = findAddCartButton()
-addCartButton.click()
-# refershCookie(dr)
-# getCookies(dr)
-# threedClick()
-
-# 关闭窗体
-# dr.close()
-# dr.quit()
-
+# 边点击边查库存
+t1 = threading.Thread(target=threedClick)
+t2 = threading.Thread(target=checkInventory)
+t1.start()
+t2.start()
