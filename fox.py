@@ -98,9 +98,8 @@ def waitIfNotLogin(dr):
 
 def checkLogin(dr):
   dictCookies = dr.get_cookies()
-  jsonCookies = json.dumps(dictCookies)
-  for cookie in jsonCookies:
-    if "user_pref_uid" in cookie and len(cookie["user_pref_uid"]) > 0:
+  for cookie in dictCookies:
+    if cookie['name'] == 'login-check' and cookie['value']=='true' :
       return True
   return False
 
@@ -130,6 +129,17 @@ def findStockInputElement():
     return e
 
 
+def findTiInputElement():
+  e = dr.find_elements_by_class_name('add_to_cart_form')
+  e = e[1]
+  e = e.find_elements_by_tag_name('ti-add-to-cart')
+  e = e[0]
+  e = expand_shadow_element(e)
+  e = e[1]
+  e = e.find_elements_by_tag_name('ti-input')
+  e = e[0]
+  return e
+
 def findAddCartButton():
   e = dr.find_elements_by_class_name('add_to_cart_form')
   e = e[1]
@@ -152,7 +162,7 @@ dr.get("https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT")
 # 等待手动登录
 waitIfNotLogin(dr)
 #打开一个商品页面
-url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=ONET8551TYS4'
+url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
 # refershCookie(dr)
 # 库存输入框
@@ -161,13 +171,16 @@ foxCreate(url)
 # document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[1].shadowRoot.children[0]
 #输入框
 inputElement = findStockInputElement()
+tiInputElement = findTiInputElement()
 print(inputElement)
+print(tiInputElement)
 inputElement.clear()
 setInputElementValue(inputElement, 9)
+setInputElementValue(tiInputElement, 9)
 
 #加入购物车
 addCartButton = findAddCartButton()
-
+addCartButton.click()
 # refershCookie(dr)
 # getCookies(dr)
 # threedClick()
