@@ -35,7 +35,7 @@ def autoBuyProductByCode(productCode):
     processHasInventory(productCode, inventory, t)
 
 def autoBuyProductByCodeV2(parentCode, productCodeList):
-    blackList = ["HD3SS460RHRT","TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR", "TPS63805YFFT"]
+    blackList = ["TPS62125DSGR","HD3SS460RHRT","TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR", "TPS63805YFFT"]
     # 过滤掉有库存但不能买的商品
     for code in productCodeList:
         if code in blackList:
@@ -59,7 +59,7 @@ def autoBuyProductByCodeV2(parentCode, productCodeList):
         logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
 
 def autoBuyProductByCodeV3(parentCode, productCodeList, ip_port):
-    blackList = ["HD3SS460RHRT", "TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR",
+    blackList = ["TPS62125DSGR","HD3SS460RHRT", "TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR",
                  "TPS63805YFFT"]
     # 过滤掉有库存但不能买的商品
     for code in productCodeList:

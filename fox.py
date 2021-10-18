@@ -6,6 +6,7 @@ import json
 from threading import Thread
 import random
 import time
+import common
 
 # 无头模式
 # opt = webdriver.FirefoxOptions()
@@ -41,7 +42,10 @@ def randClick():
 
 # 爬url
 def foxCreate(url):
-  # 隐形加载
+  # 打开一个新tab
+  dr.execute_script("window.open();")
+  handles = dr.window_handles
+  dr.switch_to.window(handles[1])
   dr.implicitly_wait(5)
   dr.get(url)
 
@@ -51,6 +55,7 @@ def foxCreate(url):
   if 'Access Denied' in html:
     print('tips:Access Denied')
     exit()
+
 
 # 获取浏览器cookie
 def getCookies(dr):
@@ -77,6 +82,27 @@ def refershCookie(dr):
   print('tips:cookies替换成功')
   dr.refresh()
   print('tips:浏览器刷新成功')
+
+def waitIfNotLogin(dr):
+  retryCount = 0
+  while 1:
+    retryCount += 1
+    if retryCount > 120:
+      return False
+    if checkLogin(dr):
+      log.info("已登录")
+      return True
+    else:
+      log.info("未登录")
+      time.sleep(1)
+
+def checkLogin(dr):
+  dictCookies = dr.get_cookies()
+  jsonCookies = json.dumps(dictCookies)
+  for cookie in jsonCookies:
+    if "user_pref_uid" in cookie and len(cookie["user_pref_uid"]) > 0:
+      return True
+  return False
 
 def expand_shadow_element(element):
   retryCount = 0
@@ -118,8 +144,17 @@ def findAddCartButton():
 def setInputElementValue(element, value):
   dr.execute_script('return arguments[0].value=' + str(value), element)
 
-url = 'https://www.ti.com/store/ti/zh/p/product/?p=THS6212IRHFT'
+log = common.initLoger()
+# 隐形加载
+dr.implicitly_wait(5)
+# 打开一个主页面
+dr.get("https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT")
+# 等待手动登录
+waitIfNotLogin(dr)
+#打开一个商品页面
+url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=ONET8551TYS4'
 foxCreate(url)
+# refershCookie(dr)
 # 库存输入框
 # document.getElementsByClassName("add_to_cart_form")[1].getElementsByTagName('ti-add-to-cart')[0].shadowRoot.children[0].getElementsByTagName('ti-input')[0].shadowRoot.children[0].value=999
 # 加入购物车按钮
