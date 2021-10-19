@@ -15,7 +15,13 @@ import main
 # opt.add_argument('--disable-gpu')
 # dr = webdriver.Firefox(options=opt)
 # 有界面
-dr = webdriver.Firefox()
+# profile = webdriver.FirefoxProfile()
+# profile.set_preference("network.proxy.type", 1)
+# profile.set_preference("network.proxy.http", "http-pro.moguproxy.com")
+# profile.set_preference("network.proxy.http_port", 9003)
+# profile.update_preferences()
+# dr = webdriver.Firefox(profile)
+dr = webdriver.Chrome()
 
 def checkInventory():
   while (1):
@@ -57,9 +63,9 @@ def randClick(randNum):
 # 爬url
 def foxCreate(url):
   # 打开一个新tab
-  # dr.execute_script("window.open();")
-  # handles = dr.window_handles
-  # dr.switch_to.window(handles[1])
+  dr.execute_script("window.open();")
+  handles = dr.window_handles
+  dr.switch_to.window(handles[1])
   dr.implicitly_wait(5)
   dr.get(url)
 
@@ -181,6 +187,54 @@ def addCart():
   addCartButton = findAddCartButton()
   addCartButton.click()
 
+def checkOut():
+  sleep(3)
+  # 添加商品成功后点击结算按钮
+  dr.find_element_by_id('add_to_cart_modal_checkout').click()
+  sleep(2)
+  # 批量购物车页面,点击结算按钮
+  dr.find_element_by_id('tiCartCalculate_Checkout').click()
+  sleep(3)
+  # step1:选择企业,点击下一步
+  dr.find_element_by_id('paid-shipping-address-select').click()
+  sleep(2)
+  # step2
+  # 勾选项选择
+  dr.find_element_by_id('cmpCheckboxflag').click()
+  sleep(2)
+  # 下一步
+  dr.find_element_by_id('tax-invoice-submit').click()
+  sleep(2)
+  # 确认并继续
+  dr.find_elements_by_class_name('vat-modal-button')[1].click()
+  sleep(2)
+  # step3
+  # 点击不是军方
+  dr.find_elements_by_class_name('militoryRadio')[1].click()
+  sleep(2)
+  # 点击下一步
+  dr.find_element_by_id('regulations-submit-btn').click()
+  sleep(2)
+  # step4
+  # 滑动条下拉
+  e = find_element_by_id('regulations-submit-btn')
+  height = dr.execute_script('return arguments[0].offsetHeight', e)
+  dr.execute_script('return arguments[0].scrollTo(0,'+height+')', e)
+  sleep(2)
+  # 接受
+  dr.find_elements_by_class_name('js-checkout-toc-radio')[0].click()
+  sleep(2)
+  # 下一步
+  dr.find_element_by_id('shipping-method-submit').click()
+  sleep(2)
+  # step6
+  # 选择企业网银
+  dr.find_elements_by_class_name('has-tooltip')[0].click()
+  sleep(2)
+  # 选择在线支付
+  dr.find_elements_by_class_name('js-apm-paymentbtn')[3].click()
+  sleep(2)
+
 
 log = common.initLoger()
 # 隐形加载
@@ -193,8 +247,11 @@ waitIfNotLogin(dr)
 url = 'https://www.ti.com.cn/store/ti/zh/p/product/?p=THS6212IRHFT'
 foxCreate(url)
 
+# addCart()
+checkOut()
+
 # 边点击边查库存
-t1 = threading.Thread(target=threedClick)
-t2 = threading.Thread(target=checkInventory)
-t1.start()
-t2.start()
+# t1 = threading.Thread(target=threedClick)
+# t2 = threading.Thread(target=checkInventory)
+# t1.start()
+# t2.start()
