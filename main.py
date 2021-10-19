@@ -15,6 +15,7 @@ import random
 import proxy
 import common
 import order
+import database
 
 
 def getInventory(url):
@@ -90,6 +91,7 @@ def processHasInventory(productCode, inventory, timespent):
             t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             f = open("inventory.txt", "a")
             f.write(t + "," + productCode + "," + str(inventory) + "\n")
+            database.insertInventory(connect, productCode, inventory)
             f.close()
         logger.info("["+productCode+"]" + "库存数量:" + str(inventory)  + "t=" + t)
     elif inventory == 0:
@@ -203,16 +205,18 @@ def addtocart(productCode):
 # Press the green button in the gutter to run the script.
 # 创建Logger
 logger = common.initLoger()
-
+connect = database.initAutoBuyTiDB()
 if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
 
-    loopProductListToGetInventoryV3()
+    # loopProductListToGetInventoryV3()
     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
     # autoBuyProductByCode("BQ7692000PWR")
 
     # 通过url直接加上请求参数，与通过params传参效果是一样的
 
     # addtocart("PLL1707IDBQRQ1")
+    # list = database.selectInventory(connect, [database.InventoryStatus.Init])
+    # logger.info(list)
     logger.info('==================PyCharm End====================')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

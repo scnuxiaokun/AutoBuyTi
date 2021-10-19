@@ -1,4 +1,4 @@
-import logging,json
+import logging,json,time
 
 def initLoger():
     logger = logging.getLogger()
@@ -36,3 +36,6 @@ def getCookie():
         result.append(name+"="+value)
 
     return "; ".join(result)
+
+def formatTime(t):
+    return time.strftime("%Y-%m-%d %H:%M:%S", t)
