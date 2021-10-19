@@ -56,7 +56,7 @@ def selectInventory(con, statusList):
     return cur.fetchall()
 
 # 查询需要下单的商品
-def selectProductListForOrder(con):
+def selectProductListForAutoBuy(con):
     statusList = [InventoryStatus.Init, InventoryStatus.Process]
     statusStrList = []
     for status in statusList:
