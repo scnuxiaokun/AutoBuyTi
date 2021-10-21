@@ -108,7 +108,7 @@ def getV4(targetUrl, ip_port):
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0",
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
-    timeout = 3
+    timeout = 10
     response = requests.get(targetUrl, headers=headers, proxies=proxy, timeout=timeout)
     return response
 

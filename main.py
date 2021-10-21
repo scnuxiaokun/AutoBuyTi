@@ -209,7 +209,7 @@ connect = database.initAutoBuyTiDB()
 if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
 
-    # loopProductListToGetInventoryV3()
+    loopProductListToGetInventoryV3()
     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
     # autoBuyProductByCode("BQ7692000PWR")
 
