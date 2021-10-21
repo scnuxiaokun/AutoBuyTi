@@ -127,8 +127,10 @@ def getIpPort(ipPortQueue):
 #获取蘑菇私密API代理
 def fetchIpPortToQueue(ipPortQueue):
     try:
-        response = requests.get(
-            'http://piping.mogumiao.com/proxy/api/get_ip_bs?appKey=d29b064661334b4980760c770c59fd72&count=5&expiryDate=0&format=1&newLine=2')
+        fo = open("proxy.config")
+        url = fo.read()
+        fo.close()
+        response = requests.get(url)
         print(response.status_code)
         print(response.text)
         map = json.loads(response.text)
@@ -156,6 +158,17 @@ def post(targetUrl, json, headers):
 
     response = requests.post(url=targetUrl, json=json, headers=headers, proxies=proxy, verify=False, allow_redirects=False)
     return response
+
+def postByIpPort(targetUrl, json, headers, ipPort):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    proxy = {"http": "http://" + ipPort, "https": "https://" + ipPort}
+    headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0"
+    headers["Accept-Language"] = "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"
+    timeout = 10
+    response = requests.post(url=targetUrl, json=json, headers=headers, proxies=proxy, verify=False,
+                             allow_redirects=False, timeout=timeout)
+    return response
+
 
 # if __name__ == '__main__':
 #     ipPortQueue = queue.SimpleQueue()

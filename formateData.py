@@ -9,24 +9,33 @@ import threading, queue
 import proxy
 import common
 
-def getParentCode(productCode):
+def getParentCode(productCode, ipPort):
     url = "http://www.ti.com.cn/search/opn?searchTerm="+productCode
 
     try:
-        response = proxy.getV3(url)
+        response = proxy.getV4(url, ipPort)
         if response.status_code == 200:
             map = json.loads(response.text)
             if 'genericPartNumber' in map:
                 parentCode = map.get('genericPartNumber');
                 logger.info("productCode:"+productCode+" parentCode:"+parentCode)
-                return (productCode, parentCode)
+                return parentCode
         else:
             logger.info("ERROR code="+str(response.status_code))
+            return None
     except BaseException as Argument:
         logger.error("Exception:"+str(Argument)+" url:"+url)
     else:
         pass
-    return 0
+    return None
+
+def getUntilIpPort(ipPortQueue):
+    while 1:
+        ipPort = proxy.getIpPort(ipPortQueue)
+        if ipPort is None:
+            time.sleep(1)
+        else:
+            return ipPort
 
 # 创建Logger
 logger = common.initLoger()
@@ -54,16 +63,16 @@ if __name__ == '__main__':
         else:
             productCodeList.append(productCode)
 
-    executor = ThreadPoolExecutor(max_workers=1)
-    tasks = [executor.submit(getParentCode, (item)) for item in productCodeList]
-    for task in as_completed(tasks):
-        try:
-            (productCode, parentCode) = task.result()
-            productCodeMap[productCode] = parentCode
-        except BaseException as Argument:
-            logger.error("Exception:" + str(Argument))
-        else:
-            pass
+    ipPortQueue = queue.SimpleQueue()
+    for productCode in productCodeList:
+        while 1:
+            ipPort = getUntilIpPort(ipPortQueue)
+            parentCode = getParentCode(productCode, ipPort)
+            if parentCode is None:
+                pass
+            else:
+                productCodeMap[productCode] = parentCode
+                break
 
     logger.info(productCodeMap)
 
