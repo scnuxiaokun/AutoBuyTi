@@ -153,7 +153,7 @@ def getUntilIpPort(ipPortQueue):
             return ipPort
 
 def loopProductListToGetInventoryV3():
-    maxThreadCount = 600
+    maxThreadCount = 720
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     ipPortQueue = queue.SimpleQueue()
     while 1:
