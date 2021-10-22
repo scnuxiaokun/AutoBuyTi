@@ -68,21 +68,26 @@ def autoBuyProductByCodeV3(parentCode, productCodeList, ip_port):
             return
     url = "https://www.ti.com.cn/productmodel/" + parentCode + "/tistore"
     t = time.time()
-    response = proxy.getV4(url, ip_port)
-    t = str(time.time() - t)
-    if response.status_code == 200:
-        list = json.loads(response.text)
-        productCodeMap = {}
-        for code in productCodeList:
-            productCodeMap[code] = 1
+    try:
+        response = proxy.getV4(url, ip_port)
+        t = str(time.time() - t)
+        if response.status_code == 200:
+            list = json.loads(response.text)
+            productCodeMap = {}
+            for code in productCodeList:
+                productCodeMap[code] = 1
 
-        for item in list:
-            productCode = item['orderablePartNumber']
-            inventory = item['inventory']
-            if productCode in productCodeMap:
-                processHasInventory(productCode, int(inventory), t)
+            for item in list:
+                productCode = item['orderablePartNumber']
+                inventory = item['inventory']
+                if productCode in productCodeMap:
+                    processHasInventory(productCode, int(inventory), t)
+        else:
+            logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
+    except BaseException as Argument:
+        logger.error("Exception:" + str(Argument) + " url:" + url)
     else:
-        logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
+        pass
 
 def processHasInventory(productCode, inventory, timespent):
     t = timespent
@@ -210,6 +215,7 @@ if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
 
     loopProductListToGetInventoryV3()
+    # autoBuyProductByCodeV3("BQ29209", ["BQ29209DRBR"],"117.57.21.227:29962")
     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
     # autoBuyProductByCode("BQ7692000PWR")
 
