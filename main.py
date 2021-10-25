@@ -28,12 +28,22 @@ def getInventory(url):
         logger.error("[ERROR]:"+" status_code:"+ str(response.status_code)+ " "+url)  # 打印状态码
         return -1
 
-def autoBuyProductByCode(productCode):
-    url = 'http://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
+def autoBuyProductByCode(productCode, ip_port):
     t = time.time()
-    inventory = getInventory(url)
-    t = str(time.time() - t)
-    processHasInventory(productCode, inventory, t)
+    url = 'http://www.ti.com.cn/storeservices/cart/opninventory?opn=' + productCode + "&abc=123"
+    try:
+        response = proxy.getV4(url, ip_port)
+        t = str(time.time() - t)
+        if response.status_code == 200:
+            result = json.loads(response.text)
+            inventory = result["inventory"]
+            processHasInventory(productCode, int(inventory), t)
+        else:
+            logger.error("[ERROR]:" + " status_code:" + str(response.status_code) + " " + url)  # 打印状态码
+    except BaseException as Argument:
+        logger.error("Exception:" + str(Argument) + " url:" + url)
+    else:
+        pass
 
 def autoBuyProductByCodeV2(parentCode, productCodeList):
     blackList = ["TPS62125DSGR","HD3SS460RHRT","TCAN1043GDMTRQ1", "TPS25944LRVCR", "TPS544B20RVFR", "TCAN4550RGYR", "TPS53317RGBR", "TPS63805YFFT"]
@@ -181,25 +191,29 @@ def loopProductListToGetInventoryV3():
 
 
 def loopProductListToGetInventory():
-    maxThreadCount = 500
-    maxIpCount = 100
+    maxThreadCount = 900
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
-    all_task = []
-    productCodeQueue = queue.SimpleQueue()
+    ipPortQueue = queue.SimpleQueue()
+
+    f = open("data.txt")
+    lines = f.readlines()
+    f.close()
+    productCodeList = []
+    for index in range(len(lines)):
+        line = lines[index]
+        productCode = line.replace('\n', '').replace('\r', '').strip()
+        productCodeList.append(productCode)
 
     while 1:
-        productCodeList = getProductList(productCodeQueue, maxIpCount)
-        tasks = [executor.submit(autoBuyProductByCode, (item)) for item in productCodeList]
-        for task in tasks:
-            all_task.append(task)
+        t = time.time()
+        ipPort = getUntilIpPort(ipPortQueue)
+        all_task = []
+        for productCode in productCodeList:
+            all_task.append(executor.submit(autoBuyProductByCode, productCode, ipPort))
 
-        if len(all_task) >= maxThreadCount :
-            copy_all_task = all_task
-
-            for future in as_completed(copy_all_task):
-                all_task.remove(future)
-                if len(all_task) <= maxThreadCount - maxIpCount:
-                    break
+        wait(all_task, return_when=ALL_COMPLETED)
+        t = str(time.time() - t)
+        logger.info("遍历一轮需要时间:" + t)
 
     logger.info("===========全部完成===========")
 
@@ -214,7 +228,7 @@ connect = database.initAutoBuyTiDB()
 if __name__ == '__main__':
     logger.info('==================PyCharm Start====================')
 
-    loopProductListToGetInventoryV3()
+    loopProductListToGetInventory()
     # autoBuyProductByCodeV3("BQ29209", ["BQ29209DRBR"],"117.57.21.227:29962")
     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
     # autoBuyProductByCode("BQ7692000PWR")
