@@ -191,7 +191,7 @@ def loopProductListToGetInventoryV3():
 
 
 def loopProductListToGetInventory():
-    maxThreadCount = 900
+    maxThreadCount = 100
     executor = ThreadPoolExecutor(max_workers=maxThreadCount)
     ipPortQueue = queue.SimpleQueue()
 
@@ -203,6 +203,8 @@ def loopProductListToGetInventory():
         line = lines[index]
         productCode = line.replace('\n', '').replace('\r', '').strip()
         productCodeList.append(productCode)
+        if len(productCodeList) >= maxThreadCount:
+            break
 
     while 1:
         t = time.time()
@@ -231,7 +233,7 @@ if __name__ == '__main__':
     loopProductListToGetInventory()
     # autoBuyProductByCodeV3("BQ29209", ["BQ29209DRBR"],"117.57.21.227:29962")
     # autoBuyProductByCodeV2("BQ29209", ["BQ29209DRBR"])
-    # autoBuyProductByCode("BQ7692000PWR")
+    # autoBuyProductByCode("BQ7692000PWR", "183.166.144.139:48449")
 
     # 通过url直接加上请求参数，与通过params传参效果是一样的
 

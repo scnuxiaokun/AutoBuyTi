@@ -109,8 +109,13 @@ def getV4(targetUrl, ip_port):
         "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4"}
 
     timeout = 10
-    response = requests.get(targetUrl, headers=headers, proxies=proxy, timeout=timeout)
-    return response
+    r = requests.get(targetUrl, headers=headers, proxies=proxy, timeout=timeout, verify=False, allow_redirects=False)
+    if r.status_code == 302 or r.status_code == 301:
+        loc = r.headers['Location']
+        url_f = loc
+        r = requests.get(url_f, headers=headers, proxies=proxy, timeout=timeout, verify=False, allow_redirects=False)
+        return r
+    return r
 
 #获取代理ip
 def getIpPort(ipPortQueue):
